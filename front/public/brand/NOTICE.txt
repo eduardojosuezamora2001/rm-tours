@@ -1,0 +1,9 @@
+Visual reference: RM Tours, Stitch project 4366171717337285856.
+Local image origins are recorded in sources.json and embedded in JPEG comments.
+Historic bio-* and home-tour-* source entries refer to illustrative photographs
+now served from private Supabase Storage through the backend, not local files.
+logo.svg is the SVG supplied by the same Stitch project.
+
+Material Symbols Outlined is distributed by Google under Apache License 2.0.
+Source and license: https://github.com/google/material-design-icons
+The local font contains only the symbols used by this application.

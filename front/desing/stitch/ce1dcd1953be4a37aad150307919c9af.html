@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "background": "#f9f9ff", "primary-container": "#0e4f75", "on-background": "#111c2d", "secondary-fixed-dim": "#7dd8b3", "surface-bright": "#f9f9ff", "surface": "#f9f9ff", "on-surface-variant": "#41474e", "on-secondary-container": "#007354", "inverse-surface": "#263143", "surface-container-highest": "#d8e3fb", "on-tertiary-fixed-variant": "#8c1900", "on-tertiary-container": "#ffa48f", "on-primary-container": "#8cc0ec", "error": "#ba1a1a", "on-secondary-fixed-variant": "#00513b", "on-secondary-fixed": "#002116", "surface-container-lowest": "#ffffff", "tertiary-fixed": "#ffdad2", "tertiary-fixed-dim": "#ffb4a3", "tertiary-container": "#921d02", "secondary": "#006c4f", "on-tertiary": "#ffffff", "primary-fixed": "#cbe6ff", "surface-container-low": "#f0f3ff", "on-error": "#ffffff", "surface-container": "#e7eeff", "secondary-container": "#99f5ce", "inverse-on-surface": "#ecf1ff", "on-primary-fixed": "#001e31", "primary": "#003756", "tertiary": "#6a1100", "on-error-container": "#93000a", "surface-tint": "#2b638a", "surface-variant": "#d8e3fb", "primary-fixed-dim": "#98ccf8", "on-secondary": "#ffffff", "surface-container-high": "#dee8ff", "on-tertiary-fixed": "#3d0600", "secondary-fixed": "#99f5ce", "outline": "#71787f", "on-surface": "#111c2d", "outline-variant": "#c1c7cf", "surface-dim": "#cfdaf2", "inverse-primary": "#98ccf8", "on-primary": "#ffffff", "on-primary-fixed-variant": "#054b71", "error-container": "#ffdad6" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter": "1.5rem", "margin": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-xs": "0.25rem" }, "fontFamily": { "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Montserrat"], "body-sm": ["Plus Jakarta Sans"], "headline-md": ["Montserrat"], "display-hero-mobile": ["Montserrat"], "label-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "display-hero": ["Montserrat"], "title-sm": ["Plus Jakarta Sans"], "headline-lg": ["Montserrat"], "headline-sm": ["Montserrat"] }, "fontSize": { "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "title-md": ["18px", { "lineHeight": "26px", "fontWeight": "700" }], "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }] } } } }</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-20 px-space-lg flex items-center gap-space-sm"><img alt="Modern logo for RM Tours Costa Rica featuring an ocean wave and tropical palm/island motif in ocean blue, emerald green and coral accent. Brand logo. - Primary color: #0e4f75
+- Font: montserrat
+- Mode: light
+- Roundness: rounded-md
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wxymonszu8ndXPDffh0PW6USJl74ddVW3rORvHhF4VEXKvGgqet07GFeYn-1K2vYKwbRsW7FCrDEiUx0OLjj1l0bvw5QD4UP17y_0Cr3WsPCDben7CGy9efp12lhxVXXVYo-RIFyU5zsWYXIm9ERC-MoonO8vxgKD1muqoQK91Sq9rsmKmdm1mcVdbIAy20ArqFb5n0EgsZO-Z00itArisAuXTHHv2jCpX9pnEWpH61euT5mt_vqnd2rw"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">RM Tours</span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Costa Rica Ops</span></div></div><div class="px-space-md py-space-xs"><div class="bg-surface-container-low px-space-md py-space-sm rounded-lg flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Temporada Alta</span></div><span class="font-label-sm text-label-sm text-secondary font-bold">Paquera</span></div></div><nav class="flex flex-col gap-1 px-space-md mt-space-md" data-active-classes="bg-primary-container text-on-primary font-bold shadow-sm"><a class="flex items-center justify-between px-space-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all group" data-path="dashboard-resumen" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="font-title-sm text-title-sm">Dashboard</span></div></a><a class="flex items-center justify-between px-space-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all group" data-path="reservas" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">confirmation_number</span><span class="font-title-sm text-title-sm">Reservas</span></div><span class="bg-secondary text-on-secondary font-label-sm text-label-sm px-2 py-0.5 rounded-full">12</span></a><a class="flex items-center justify-between px-space-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all group" data-path="catalogo-de-tours-y-precios" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">kayaking</span><span class="font-title-sm text-title-sm">CatÃ¡logo &amp; Precios</span></div></a><a class="flex items-center justify-between px-space-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all group" data-path="calendario-y-salidas" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">calendar_today</span><span class="font-title-sm text-title-sm">Calendario &amp; Salidas</span></div></a><a class="flex items-center justify-between px-space-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all group" data-path="pagos-y-sinpe-movil" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">payments</span><span class="font-title-sm text-title-sm">Pagos &amp; SINPE MÃ³vil</span></div></a><a class="flex items-center justify-between px-space-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all group" data-path="clientes-y-whatsapp" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">chat</span><span class="font-title-sm text-title-sm">Clientes &amp; WhatsApp</span></div><span class="w-2 h-2 rounded-full bg-tertiary"></span></a><a class="flex items-center justify-between px-space-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all group" data-path="configuracion" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-title-sm text-title-sm">ConfiguraciÃ³n</span></div></a></nav></div><div class="p-space-md"><div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-sm">MQ</div><div class="flex flex-col min-w-0 flex-1"><span class="font-label-lg text-label-lg text-on-surface truncate">Michelle QuirÃ³s</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Admin Operaciones</span></div></div><div class="flex items-center justify-between pt-space-xs"><span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> En lÃ­nea</span><button class="text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]">logout</span></button></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)] px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="Modern logo for RM Tours Costa Rica featuring an ocean wave and tropical palm/island motif in ocean blue, emerald green and coral accent. Brand logo. - Primary color: #0e4f75
+- Font: montserrat
+- Mode: light
+- Roundness: rounded-md
+" class="h-8 w-auto object-contain lg:hidden" src="https://lh3.googleusercontent.com/aida/AEtjO1Wxymonszu8ndXPDffh0PW6USJl74ddVW3rORvHhF4VEXKvGgqet07GFeYn-1K2vYKwbRsW7FCrDEiUx0OLjj1l0bvw5QD4UP17y_0Cr3WsPCDben7CGy9efp12lhxVXXVYo-RIFyU5zsWYXIm9ERC-MoonO8vxgKD1muqoQK91Sq9rsmKmdm1mcVdbIAy20ArqFb5n0EgsZO-Z00itArisAuXTHHv2jCpX9pnEWpH61euT5mt_vqnd2rw"/><div class="flex items-center bg-surface-container-low rounded-lg px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant mr-space-sm uppercase">Muelle Paquera:</span><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-md text-label-md text-secondary font-bold">Salidas Operativas</span></div></div><div class="hidden xl:flex items-center bg-secondary-container/40 text-on-secondary-fixed-variant px-space-md py-space-xs rounded-lg gap-space-xs"><span class="material-symbols-outlined text-[18px]">waves</span><span class="font-label-sm text-label-sm font-semibold">Marea: Favorable para Bioluminiscencia</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-surface-container px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">swap_horiz</span><span class="font-label-md text-label-md">Estado RÃ¡pido</span></button><div class="relative flex items-center"><button class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors relative"><span class="material-symbols-outlined text-[20px]">chat</span><span class="absolute top-1 right-1 w-2.5 h-2.5 bg-secondary rounded-full ring-2 ring-surface-container-lowest"></span></button></div><div class="relative flex items-center"><button class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors relative"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2.5 h-2.5 bg-tertiary rounded-full ring-2 ring-surface-container-lowest"></span></button></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-20 px-space-lg pb-space-xl bg-background"><div class="flex flex-col w-full gap-space-lg">
+<!-- TOP CONTEXT BANNER & EMERGENCY HARBOR OVERRIDE -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">anchor</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-primary">GestiÃ³n de Tours y Experiencias</span>
+<span class="bg-secondary-container text-on-secondary-fixed-variant font-label-sm text-label-sm px-2 py-0.5 rounded-full uppercase">Ops Live</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Control maestro de catÃ¡logo activo, paridad cambiaria USD/CRC, aforos de embarcaciones y operadores aliados en PenÃ­nsula de Nicoya.
+        </p>
+</div>
+</div>
+<!-- CapitanÃ­a Alert & Bulk Actions -->
+<div class="flex flex-wrap items-center gap-space-sm w-full lg:w-auto">
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-2 rounded-lg">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="harborAlertToggle" onchange="toggleHarborAlert(this)" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface-container-lowest after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-outline-variant after:border-0 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-tertiary-container"></div>
+</label>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary font-bold">Alerta CapitanÃ­a / Mar Picado</span>
+<span class="font-label-sm text-label-sm text-secondary" id="harborStatusText">Salidas normales abiertas</span>
+</div>
+</div>
+<button class="bg-tertiary-container hover:bg-tertiary text-on-tertiary font-label-lg text-label-lg px-space-md py-2.5 rounded-lg flex items-center gap-space-xs transition-colors shadow-sm" onclick="openEditDrawer('new')">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Crear Nuevo Tour</span>
+</button>
+<button class="bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md px-space-md py-2.5 rounded-lg flex items-center gap-space-xs transition-colors">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span>Ajustar Tarifas Temporada</span>
+</button>
+</div>
+</div>
+<!-- METRICS RIBBON (BENTO HIGHLIGHTS) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Stat 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Tours Activos</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold mt-1">8</span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 100% listos en WhatsApp
+        </span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">kayaking</span>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Cupo Diario Operable</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold mt-1">85 <span class="font-title-sm text-title-sm font-normal text-on-surface-variant">pax</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="text-secondary font-bold">58 confirmados</span> hoy
+        </span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Tour MÃ¡s Vendido</span>
+<span class="font-title-md text-title-md text-primary font-bold mt-1 truncate max-w-[150px]">Bioluminiscencia</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span> 48% facturaciÃ³n mes
+        </span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">flare</span>
+</div>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Operadores Aliados</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold mt-1">6</span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">verified</span> Lancheros ICT Paquera/CurÃº
+        </span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">sailing</span>
+</div>
+</div>
+</div>
+<!-- CONTROL BAR: ZONES, SEARCH & QUICK FILTERS -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- Zone Selector Pills -->
+<div class="flex flex-wrap items-center gap-space-xs w-full md:w-auto">
+<button class="zone-filter-btn px-space-md py-1.5 rounded-full font-label-md text-label-md bg-primary text-on-primary transition-all" data-zone="all" onclick="filterZone('all')">
+        Todas las Zonas (8)
+      </button>
+<button class="zone-filter-btn px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-all" data-zone="paquera" onclick="filterZone('paquera')">
+        Paquera (4)
+      </button>
+<button class="zone-filter-btn px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-all" data-zone="tambor" onclick="filterZone('tambor')">
+        BahÃ­a Tambor (2)
+      </button>
+<button class="zone-filter-btn px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-all" data-zone="montezuma" onclick="filterZone('montezuma')">
+        Montezuma (1)
+      </button>
+<button class="zone-filter-btn px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-all" data-zone="santateresa" onclick="filterZone('santateresa')">
+        Santa Teresa (1)
+      </button>
+</div>
+<!-- Secondary Utilities -->
+<div class="flex items-center gap-space-sm w-full md:w-auto justify-end">
+<div class="relative w-full md:w-64">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary" id="tourSearchInput" onkeyup="searchTours()" placeholder="Buscar por tour o lancha..." type="text"/>
+</div>
+<div class="h-8 w-[1px] bg-surface-container-high hidden md:block"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">TC Oficial: <span class="font-bold text-primary">â¡520 / $1 USD</span></span>
+</div>
+</div>
+<!-- MAIN WORKSPACE: TOURS GRID (6 TOURS) + DETAIL/EDIT DRAWER OVERLAY -->
+<div class="relative w-full">
+<!-- GRID OF CARDS -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg" id="toursGrid">
+<!-- CARD 1: Bioluminiscencia -->
+<div class="tour-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col" data-title="Tour Nocturno de Bioluminiscencia en Paquera" data-zone="paquera">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Night boat tour on calm bioluminescent glowing turquoise waters in Paquera bay Costa Rica, silhouettes of travelers under star-filled deep navy sky, ambient natural magical turquoise radiance, professional adventure photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmwQ7yb0TD711Xsq8rEyQxIYuEmipKu1a-iLYNLkROA_vVP_XaCjKgEQL14Vo1XlUnajOfgHN8UDP9eSB1DEBgC5TEsDosOqnPM9fPW5xtO8HW1R5_BQdJdq09avYk3Rm1WFx7MEwAbPyGD8ChMCuq8bfw94rx0txHCc0QO-oUEbYLfAPjyRvx-r7OD0RELyQURPortrvpsFyCH2iChnd70tDmzSIECiR27pDupwWrFwKaTo-oybTB"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex gap-space-xs">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm text-primary font-bold">PAQUERA</span>
+<span class="bg-secondary text-on-secondary px-2 py-1 rounded-full font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> ESTRELLA (48%)
+            </span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2 py-1 rounded-full font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Activo
+            </span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">schedule</span>
+<span class="font-label-sm text-label-sm">6:00 PM | 7:30 PM (2 turnos)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">group</span>
+<span class="font-label-sm text-label-sm font-bold">20 pax / turno</span>
+</div>
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between">
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-primary font-bold leading-snug">Tour Nocturno de Bioluminiscencia en Paquera</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+              NavegaciÃ³n nocturna guiada en lancha techada con nado voluntario en aguas brillantes de BahÃ­a Rica.
+            </p>
+<div class="mt-space-sm flex flex-wrap gap-1">
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Chaleco + Seguro</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">GuÃ­a BilingÃ¼e ICT</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Bebidas Calientes</span>
+</div>
+<!-- Operator & Vessel Details -->
+<div class="mt-space-md p-space-xs bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-[11px]">RM</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold leading-tight">Lancha "Don Rafa III"</span>
+<span class="text-[10px] text-on-surface-variant leading-none">Cap. Marvin QuirÃ³s â¢ Paquera</span>
+</div>
+</div>
+<span class="bg-secondary-container/60 text-on-secondary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded">InspecciÃ³n ICT OK</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-tertiary-container font-extrabold">$45 <span class="text-[12px] font-normal text-on-surface-variant">USD</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">o â¡23,400 CRC / pax</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm px-3 py-2 rounded-lg transition-colors flex items-center gap-1" onclick="openEditDrawer('bio')">
+<span class="material-symbols-outlined text-[16px]">edit</span> Editar
+              </button>
+<button class="bg-surface-container-low hover:bg-error-container text-on-surface-variant hover:text-error font-label-sm text-label-sm px-2.5 py-2 rounded-lg transition-colors" onclick="toggleTourPause(this)" title="Pausar reservas de este tour">
+<span class="material-symbols-outlined text-[16px]">pause_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 2: Isla Tortuga VIP -->
+<div class="tour-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col" data-title="Tour Isla Tortuga VIP con Snorkeling y Almuerzo" data-zone="paquera">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Stunning aerial view of Isla Tortuga Costa Rica white sand beach turquoise crystalline waters and lush tropical palm trees with tour catamarans and lanchas anchored safely in shallow turquoise bay under morning sunshine" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx57ccPWotHoTfGzhYr_4NrGojfVi3pnp8B7f_-vTfN_FCbB7-VAn-FAMw6BA3IwglKU1vgbJnKUE0KWSX9sfmWgFPJ1FYI3oxcJsRI04zbLWJW0rnZPOnFe7WjFzq5noIzf2qMRkBozo5dCOBNtIODMEr6JQSVwjC_9OdRAJ-qoBrEN-fRwZEVC6nqU2quy6i0m-xdto6W_UoZW8m-JKlWupuhQsH9rKBdBpk7FmE93iWDRXykdEm"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex gap-space-xs">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm text-primary font-bold">PAQUERA</span>
+<span class="bg-primary-container text-on-primary px-2 py-1 rounded-full font-label-sm text-label-sm font-bold">FULL DAY</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2 py-1 rounded-full font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Activo
+            </span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">schedule</span>
+<span class="font-label-sm text-label-sm">8:30 AM (Ãnica salida)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">group</span>
+<span class="font-label-sm text-label-sm font-bold">14 pax mÃ¡x</span>
+</div>
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between">
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-primary font-bold leading-snug">Tour Isla Tortuga VIP con Snorkeling &amp; Almuerzo</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+              Paseo costero, 2 puntos de snorkel en arrecife volcÃ¡nico, almuerzo gourmet caribeÃ±o servido en playa y tiempo libre.
+            </p>
+<div class="mt-space-sm flex flex-wrap gap-1">
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Almuerzo Incluido</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Snorkel Pro + Careta</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Frutas Frescas</span>
+</div>
+<!-- Operator & Vessel Details -->
+<div class="mt-space-md p-space-xs bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-[11px]">CC</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold leading-tight">Lancha "Sea Explorer"</span>
+<span class="text-[10px] text-on-surface-variant leading-none">CapitÃ¡n Carlos â¢ Muelle Paquera</span>
+</div>
+</div>
+<span class="bg-secondary-container/60 text-on-secondary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded">Bimotor 150HP</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-tertiary-container font-extrabold">$75 <span class="text-[12px] font-normal text-on-surface-variant">USD</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">o â¡39,000 CRC / pax</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm px-3 py-2 rounded-lg transition-colors flex items-center gap-1" onclick="openEditDrawer('tortuga')">
+<span class="material-symbols-outlined text-[16px]">edit</span> Editar
+              </button>
+<button class="bg-surface-container-low hover:bg-error-container text-on-surface-variant hover:text-error font-label-sm text-label-sm px-2.5 py-2 rounded-lg transition-colors" onclick="toggleTourPause(this)" title="Pausar reservas de este tour">
+<span class="material-symbols-outlined text-[16px]">pause_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 3: Playa Quesera & CurÃº -->
+<div class="tour-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col" data-title="ExcursiÃ³n Playa Quesera y Senderos CurÃº" data-zone="paquera">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Pristine white sand of Playa Quesera in Curu National Wildlife Refuge Costa Rica, turquoise calm sea, tropical jungle meeting the ocean, warm natural light of a sunny morning in Nicoya" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtm7MF9ZDGipOPsAhBhP6KfUG9GuZYCEsx-O8soN-AsPuh9wZHxX_u9uOfwY_WJ9m89abvEG7mCA72bF7xSYJ1VFLrp1ln4OWUM-QpQRuHFAKeytzODDnkH0_qNSkELYyo3TlAxgnCPhmSQ34nBXD8W8V07CGsyO8HGpTwmGZFbCBcChsKZNBf7i1iIAW_amgcelGgfqhSmG9fSMX8GipCyka8T0Dr-TZfnkkoVoEe3NssToeGrm3d"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex gap-space-xs">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm text-primary font-bold">PAQUERA / CURÃ</span>
+<span class="bg-secondary text-on-secondary px-2 py-1 rounded-full font-label-sm text-label-sm font-bold">ECO-TOUR</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2 py-1 rounded-full font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Activo
+            </span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">schedule</span>
+<span class="font-label-sm text-label-sm">9:00 AM</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">group</span>
+<span class="font-label-sm text-label-sm font-bold">12 pax</span>
+</div>
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between">
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-primary font-bold leading-snug">ExcursiÃ³n Playa Quesera &amp; Senderos CurÃº</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+              Acceso exclusivo por lancha a la playa mÃ¡s virgen del Golfo, senderismo guiado en avistamiento de venados, monos y aves.
+            </p>
+<div class="mt-space-sm flex flex-wrap gap-1">
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Entrada CurÃº</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Panga RÃ¡pida</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Kayak Doble</span>
+</div>
+<!-- Operator & Vessel Details -->
+<div class="mt-space-md p-space-xs bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-[11px]">JL</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold leading-tight">Lancha "CurÃº Safari"</span>
+<span class="text-[10px] text-on-surface-variant leading-none">GuÃ­a JosÃ© LÃ³pez (Certificado ICT)</span>
+</div>
+</div>
+<span class="bg-surface-container-high text-primary text-[10px] font-bold px-2 py-0.5 rounded">Motor EcolÃ³gico</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-tertiary-container font-extrabold">$55 <span class="text-[12px] font-normal text-on-surface-variant">USD</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">o â¡28,600 CRC / pax</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm px-3 py-2 rounded-lg transition-colors flex items-center gap-1" onclick="openEditDrawer('quesera')">
+<span class="material-symbols-outlined text-[16px]">edit</span> Editar
+              </button>
+<button class="bg-surface-container-low hover:bg-error-container text-on-surface-variant hover:text-error font-label-sm text-label-sm px-2.5 py-2 rounded-lg transition-colors" onclick="toggleTourPause(this)">
+<span class="material-symbols-outlined text-[16px]">pause_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 4: Full Moon & Sunset Tambor -->
+<div class="tour-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col" data-title="Full Moon y Sunset en BahÃ­a Tambor" data-zone="tambor">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Spectacular sunset over Bahia Tambor Costa Rica with warm golden orange and soft purple reflections across serene calm ocean waters, silhouettes of pelicans flying over traditional touring boat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwV3G79YflaUPTDUyabDUr1uGoAQ0bZX62UdCda1Z6YayZxzrlnZg7EPk-jUctCu01oDW79bB26kraJg2GpjNiyGMdVcn81I3jX-3dSiJa54pL3s973U9kk7xvsw62BV5o3oE1L9xPBQeWRpNmHtGjkV7QeOBNwSx7mFotnPIG1a3Bk-UY6U16mKVPHM3Cds9Ki-oU3y-V2sCznfUOnCY1wKU5nuuOIbC-l5rD0t-RE8u6yrMEUrvL"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex gap-space-xs">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm text-primary font-bold">TAMBOR</span>
+<span class="bg-surface-container-high text-primary px-2 py-1 rounded-full font-label-sm text-label-sm font-bold">ATARDECER</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2 py-1 rounded-full font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Activo
+            </span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">schedule</span>
+<span class="font-label-sm text-label-sm">3:30 PM a 6:30 PM</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">group</span>
+<span class="font-label-sm text-label-sm font-bold">15 pax</span>
+</div>
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between">
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-primary font-bold leading-snug">Full Moon &amp; Sunset en BahÃ­a Tambor</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+              NavegaciÃ³n costera disfrutando el atardecer dorado en el golfo con brindis tropical y observaciÃ³n de fauna al caer la noche.
+            </p>
+<div class="mt-space-sm flex flex-wrap gap-1">
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Cocktails / Bebidas</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">MÃºsica a bordo</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Snacks TÃ­picos</span>
+</div>
+<!-- Operator & Vessel Details -->
+<div class="mt-space-md p-space-xs bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-fixed-variant flex items-center justify-center font-bold text-[11px]">DB</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold leading-tight">CatamarÃ¡n "Tambor Breeze"</span>
+<span class="text-[10px] text-on-surface-variant leading-none">Don Beto Solano â¢ Muelle Tambor</span>
+</div>
+</div>
+<span class="bg-secondary-container/60 text-on-secondary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded">Espacio Chill</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-tertiary-container font-extrabold">$40 <span class="text-[12px] font-normal text-on-surface-variant">USD</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">o â¡20,800 CRC / pax</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm px-3 py-2 rounded-lg transition-colors flex items-center gap-1" onclick="openEditDrawer('tambor')">
+<span class="material-symbols-outlined text-[16px]">edit</span> Editar
+              </button>
+<button class="bg-surface-container-low hover:bg-error-container text-on-surface-variant hover:text-error font-label-sm text-label-sm px-2.5 py-2 rounded-lg transition-colors" onclick="toggleTourPause(this)">
+<span class="material-symbols-outlined text-[16px]">pause_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 5: Avistamiento Ballenas & Delfines -->
+<div class="tour-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col" data-title="Avistamiento de Ballenas Jorobadas y Delfines" data-zone="montezuma">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Humpback whale tail fluke breaching above deep cobalt ocean waters off the coast of Montezuma Costa Rica, lush green coastal shoreline visible in distance under vibrant morning sun" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTYaFzrrmfXcJYbR1IYBx4eb6np8SBTCi2cVLaGjfI9qwbAyQgliAFTjH-z0b-9Wowlp35i99ozF7QcX99nm8P3qYMOa4po5d0LYa63AWRzqtZ7mNXlkca4TUKXy7C4YiQ_DslMnXEZIptHJQTVVckUDuObJswJ7c1thptX4sFQl493i2wbv7j-o57ad1MGKD0DvxQhk6pgBensJphWhumVP0rOLzaF7ukzXCJ13WnvLBcD4OFTNlZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex gap-space-xs">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm text-primary font-bold">MONTEZUMA</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-2 py-1 rounded-full font-bold">TEMPORADA</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2 py-1 rounded-full font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Activo
+            </span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">schedule</span>
+<span class="font-label-sm text-label-sm">8:00 AM (4 Horas)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">group</span>
+<span class="font-label-sm text-label-sm font-bold">12 pax</span>
+</div>
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between">
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-primary font-bold leading-snug">Avistamiento Ballenas Jorobadas &amp; Delfines</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+              ExpediciÃ³n marina en mar abierto frente a Cabo Blanco en busca de ballenas jorobadas, delfines manchados y tortugas.
+            </p>
+<div class="mt-space-sm flex flex-wrap gap-1">
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">HidrÃ³fono Marino</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">BiÃ³logo Local</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Snacks EnergÃ©ticos</span>
+</div>
+<!-- Operator & Vessel Details -->
+<div class="mt-space-md p-space-xs bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-[11px]">OC</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold leading-tight">Lancha "Oceanic Whale"</span>
+<span class="text-[10px] text-on-surface-variant leading-none">Cap. Danny Ruiz â¢ Montezuma</span>
+</div>
+</div>
+<span class="bg-surface-container-high text-primary text-[10px] font-bold px-2 py-0.5 rounded">Sonar &amp; GPS</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-tertiary-container font-extrabold">$68 <span class="text-[12px] font-normal text-on-surface-variant">USD</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">o â¡35,360 CRC / pax</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm px-3 py-2 rounded-lg transition-colors flex items-center gap-1" onclick="openEditDrawer('ballenas')">
+<span class="material-symbols-outlined text-[16px]">edit</span> Editar
+              </button>
+<button class="bg-surface-container-low hover:bg-error-container text-on-surface-variant hover:text-error font-label-sm text-label-sm px-2.5 py-2 rounded-lg transition-colors" onclick="toggleTourPause(this)">
+<span class="material-symbols-outlined text-[16px]">pause_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 6: Pesca Deportiva y Costera -->
+<div class="tour-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col" data-title="Pesca Deportiva y Costera en el Golfo" data-zone="santateresa">
+<div class="relative h-48 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="High-end sportfishing boat navigating calm waters off the coast of Mal Pais and Santa Teresa Costa Rica with fishing rods rigged, Pacific ocean backdrop under clear bright sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6YrLpPXzn4K293TqrXKFjx1FvJEMUDaKfeWxQ5vKIjPlWPM5qOMEpaspvtgARUhldOwcK6lwJ1BJZ98zVLIuvznCA7waHMRTU3-odg87ji1c8yzRcJitaR6IPicD5SCD3YL-NbdS3bIkWhiItgOUqxQXwu_nacIeGzjJfIzKH64eEziaeRpgnSDoOa-M-1gHRHSaeUBNwTeuJlWI0DDeNAKFZKRUiq2Wi7oLP-n3ECG5bcaAXQhBM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex gap-space-xs">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm text-primary font-bold">SANTA TERESA</span>
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-2 py-1 rounded-full font-label-sm text-label-sm font-bold">CHARTER PRIVADO</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-2 py-1 rounded-full font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Activo
+            </span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">schedule</span>
+<span class="font-label-sm text-label-sm">6:00 AM Ã³ 1:00 PM</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">group</span>
+<span class="font-label-sm text-label-sm font-bold">6 pax charter</span>
+</div>
+</div>
+</div>
+<div class="p-space-md flex-1 flex flex-col justify-between">
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-primary font-bold leading-snug">Pesca Deportiva &amp; Costera en el Golfo</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+              Jigging, trolling y fondo para atÃºn aleta amarilla, dorado y pargo rojo. Modalidad catch &amp; release responsable o fileteo fresco.
+            </p>
+<div class="mt-space-sm flex flex-wrap gap-1">
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Equipo Shimano</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Carnada Viva</span>
+<span class="bg-surface-container-low text-on-surface-variant text-[11px] font-medium px-2 py-0.5 rounded">Hielera + Cervezas</span>
+</div>
+<!-- Operator & Vessel Details -->
+<div class="mt-space-md p-space-xs bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-[11px]">ER</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold leading-tight">Lancha "Mahi Mahi 26ft"</span>
+<span class="text-[10px] text-on-surface-variant leading-none">Cap. Esteban Rivas â¢ Mal PaÃ­s</span>
+</div>
+</div>
+<span class="bg-surface-container-high text-primary text-[10px] font-bold px-2 py-0.5 rounded">Licencia INCOPESCA</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-tertiary-container font-extrabold">$90 <span class="text-[12px] font-normal text-on-surface-variant">USD/h</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Charter 4h: $360 USD</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm px-3 py-2 rounded-lg transition-colors flex items-center gap-1" onclick="openEditDrawer('pesca')">
+<span class="material-symbols-outlined text-[16px]">edit</span> Editar
+              </button>
+<button class="bg-surface-container-low hover:bg-error-container text-on-surface-variant hover:text-error font-label-sm text-label-sm px-2.5 py-2 rounded-lg transition-colors" onclick="toggleTourPause(this)">
+<span class="material-symbols-outlined text-[16px]">pause_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- QUICK EDIT DRAWER / MODAL LATERAL (Intuitivo para Michelle QuirÃ³s) -->
+<div class="hidden fixed inset-y-0 right-0 w-full max-w-xl bg-surface-container-lowest shadow-2xl z-50 overflow-y-auto flex-col justify-between" id="tourDrawer">
+<!-- Drawer Header -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between sticky top-0 z-10">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">tune</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold" id="drawerTitle">Editar Detalles del Tour</h2>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">RM Tours â¢ Paquera &amp; PenÃ­nsula</span>
+</div>
+</div>
+<button class="w-9 h-9 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" onclick="closeEditDrawer()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Drawer Body (Form Fields) -->
+<form class="p-space-lg flex flex-col gap-space-md" id="tourEditForm" onsubmit="saveTourChanges(event)">
+<!-- Nombre del Tour -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm font-bold text-on-surface">Nombre Comercial del Tour</label>
+<input class="h-11 px-3 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary" id="formTourName" required="" type="text" value="Tour Nocturno de Bioluminiscencia en Paquera"/>
+</div>
+<!-- Zona & Operador Aliado Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm font-bold text-on-surface">Localidad / Zona Base</label>
+<select class="h-11 px-3 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary" id="formTourZone">
+<option selected="" value="paquera">Paquera (Golfo de Nicoya)</option>
+<option value="tambor">BahÃ­a Tambor</option>
+<option value="montezuma">Montezuma</option>
+<option value="santateresa">Santa Teresa / Mal PaÃ­s</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm font-bold text-on-surface">Operador / EmbarcaciÃ³n Aliada</label>
+<select class="h-11 px-3 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary" id="formTourOperator">
+<option selected="" value="1">Cap. Marvin QuirÃ³s (Don Rafa III - 20 pax)</option>
+<option value="2">CapitÃ¡n Carlos (Sea Explorer - 14 pax)</option>
+<option value="3">JosÃ© LÃ³pez (CurÃº Safari - 12 pax)</option>
+<option value="4">Don Beto Solano (Tambor Breeze - 15 pax)</option>
+<option value="5">Danny Ruiz (Oceanic Whale - 12 pax)</option>
+<option value="6">Esteban Rivas (Mahi Mahi - 6 pax)</option>
+</select>
+</div>
+</div>
+<!-- Precios Duales (USD y Colones CRC) -->
+<div class="p-space-md bg-surface-container-low rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">currency_exchange</span> Tarifas Nacional / Extranjero
+            </span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">SINPE MÃ³vil &amp; Tarjeta</span>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-medium">Tarifa Extranjero (USD)</label>
+<div class="relative">
+<span class="absolute left-3 top-2.5 font-bold text-on-surface-variant">$</span>
+<input class="h-10 pl-7 pr-3 w-full rounded-lg bg-surface-container-lowest font-title-sm text-title-sm font-bold text-tertiary-container focus:outline-none focus:ring-2 focus:ring-primary" id="formPriceUSD" oninput="syncCRCPrice(this.value)" type="number" value="45"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-medium">Tarifa Nacional (CRC)</label>
+<div class="relative">
+<span class="absolute left-3 top-2.5 font-bold text-on-surface-variant">â¡</span>
+<input class="h-10 pl-7 pr-3 w-full rounded-lg bg-surface-container-lowest font-title-sm text-title-sm font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary" id="formPriceCRC" type="number" value="23400"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Cupos y Horarios -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm font-bold text-on-surface">LÃ­mite Cupo / Lancha</label>
+<div class="flex items-center bg-surface-container-low rounded-lg h-11 px-2 justify-between">
+<button class="w-8 h-8 rounded bg-surface-container-lowest text-primary font-bold text-lg hover:bg-surface-container flex items-center justify-center" onclick="decrementCapacity()" type="button">-</button>
+<span class="font-title-sm text-title-sm font-bold text-primary" id="formCapacityVal">20 personas</span>
+<button class="w-8 h-8 rounded bg-surface-container-lowest text-primary font-bold text-lg hover:bg-surface-container flex items-center justify-center" onclick="incrementCapacity()" type="button">+</button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm font-bold text-on-surface">Horarios de Salida (Turnos)</label>
+<input class="h-11 px-3 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary" id="formSchedules" placeholder="Separados por coma" type="text" value="6:00 PM, 7:30 PM"/>
+</div>
+</div>
+<!-- QuÃ© Incluye (Checklist interactivo) -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm font-bold text-on-surface">QuÃ© Incluye el Tour (Visibles en WhatsApp &amp; Voucher)</label>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-space-md rounded-xl">
+<label class="flex items-center gap-2 cursor-pointer font-body-sm text-body-sm text-on-surface">
+<input checked="" class="w-4 h-4 rounded text-secondary focus:ring-0" type="checkbox"/>
+<span>Chaleco Salvavidas Cert.</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer font-body-sm text-body-sm text-on-surface">
+<input checked="" class="w-4 h-4 rounded text-secondary focus:ring-0" type="checkbox"/>
+<span>GuÃ­a Certificado ICT</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer font-body-sm text-body-sm text-on-surface">
+<input checked="" class="w-4 h-4 rounded text-secondary focus:ring-0" type="checkbox"/>
+<span>Bebidas / CafÃ© Caliente</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer font-body-sm text-body-sm text-on-surface">
+<input checked="" class="w-4 h-4 rounded text-secondary focus:ring-0" type="checkbox"/>
+<span>PÃ³liza de Seguro INS</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer font-body-sm text-body-sm text-on-surface">
+<input class="w-4 h-4 rounded text-secondary focus:ring-0" type="checkbox"/>
+<span>Equipo Snorkel Pro</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer font-body-sm text-body-sm text-on-surface">
+<input class="w-4 h-4 rounded text-secondary focus:ring-0" type="checkbox"/>
+<span>Almuerzo en Playa</span>
+</label>
+</div>
+</div>
+<!-- WhatsApp Automatic Booking Integration Toggle -->
+<div class="p-space-md rounded-xl bg-secondary-container/30 flex items-start gap-space-sm">
+<input checked="" class="w-5 h-5 rounded text-secondary mt-0.5 focus:ring-0" id="formWhatsAppAuto" type="checkbox"/>
+<div class="flex flex-col">
+<label class="font-label-md text-label-md font-bold text-on-surface cursor-pointer" for="formWhatsAppAuto">Habilitar en Bot de Reservas WhatsApp</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Permite a los turistas consultar disponibilidad en tiempo real y pagar el depÃ³sito por SINPE MÃ³vil sin intervenciÃ³n manual.</p>
+</div>
+</div>
+<!-- Form Action Footer -->
+<div class="pt-space-md flex items-center justify-end gap-space-sm sticky bottom-0 bg-surface-container-lowest py-space-md">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="closeEditDrawer()" type="button">
+            Cancelar
+          </button>
+<button class="px-space-lg py-2.5 rounded-lg bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-md text-label-md font-bold shadow-sm transition-colors flex items-center gap-1" type="submit">
+<span class="material-symbols-outlined text-[18px]">save</span> Guardar Cambios
+          </button>
+</div>
+</form>
+</div>
+<!-- Backdrop for Drawer -->
+<div class="hidden fixed inset-0 bg-black/40 z-40 backdrop-blur-xs transition-opacity" id="drawerBackdrop" onclick="closeEditDrawer()"></div>
+</div>
+<!-- BOTTOM POLICY & QUICK CAPACITY AUDIT TABLE -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[22px] text-primary">directions_boat</span>
+<h3 class="font-title-md text-title-md text-primary font-bold">Matriz de Cupos y Embarcaciones Activas (Hoy)</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Actualizado cada 5 min con reservas confirmadas</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase">
+<tr>
+<th class="py-2.5 px-3 rounded-l-lg">EmbarcaciÃ³n / Operador</th>
+<th class="py-2.5 px-3">Zona</th>
+<th class="py-2.5 px-3">Tours Asignados</th>
+<th class="py-2.5 px-3">Capacidad Total</th>
+<th class="py-2.5 px-3">OcupaciÃ³n Hoy</th>
+<th class="py-2.5 px-3 rounded-r-lg text-right">Estado Operativo</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-3 font-semibold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Don Rafa III (Cap. Marvin QuirÃ³s)
+            </td>
+<td class="py-3 px-3 text-on-surface-variant">Paquera (BahÃ­a Rica)</td>
+<td class="py-3 px-3">Bioluminiscencia (2 salidas)</td>
+<td class="py-3 px-3 font-bold text-primary">40 pax / dÃ­a</td>
+<td class="py-3 px-3">
+<div class="w-36 bg-surface-container rounded-full h-2 overflow-hidden flex">
+<div class="bg-secondary h-full" style="width: 85%"></div>
+</div>
+<span class="text-[11px] text-secondary font-bold">34 / 40 reservados (85%)</span>
+</td>
+<td class="py-3 px-3 text-right">
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-2 py-0.5 rounded font-label-sm text-label-sm font-bold">Listo en Muelle</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-3 font-semibold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Sea Explorer (CapitÃ¡n Carlos)
+            </td>
+<td class="py-3 px-3 text-on-surface-variant">Muelle Paquera</td>
+<td class="py-3 px-3">Isla Tortuga VIP</td>
+<td class="py-3 px-3 font-bold text-primary">14 pax / dÃ­a</td>
+<td class="py-3 px-3">
+<div class="w-36 bg-surface-container rounded-full h-2 overflow-hidden flex">
+<div class="bg-secondary h-full" style="width: 100%"></div>
+</div>
+<span class="text-[11px] text-tertiary font-bold">14 / 14 - AGOTADO (100%)</span>
+</td>
+<td class="py-3 px-3 text-right">
+<span class="bg-surface-container text-on-surface px-2 py-0.5 rounded font-label-sm text-label-sm font-bold">En NavegaciÃ³n</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-3 font-semibold text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              CurÃº Safari (JosÃ© LÃ³pez)
+            </td>
+<td class="py-3 px-3 text-on-surface-variant">Refugio CurÃº</td>
+<td class="py-3 px-3">Playa Quesera &amp; Senderos</td>
+<td class="py-3 px-3 font-bold text-primary">12 pax / dÃ­a</td>
+<td class="py-3 px-3">
+<div class="w-36 bg-surface-container rounded-full h-2 overflow-hidden flex">
+<div class="bg-secondary h-full" style="width: 50%"></div>
+</div>
+<span class="text-[11px] text-on-surface-variant font-bold">6 / 12 disponibles (50%)</span>
+</td>
+<td class="py-3 px-3 text-right">
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-2 py-0.5 rounded font-label-sm text-label-sm font-bold">Listo en Muelle</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- INTERACTIVITY SCRIPT (Vanilla JS) -->
+<script>
+  // Filter by Zone Pills
+  function filterZone(zone) {
+    const buttons = document.querySelectorAll('.zone-filter-btn');
+    buttons.forEach(btn => {
+      if(btn.getAttribute('data-zone') === zone) {
+        btn.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+        btn.classList.add('bg-primary', 'text-on-primary');
+      } else {
+        btn.classList.remove('bg-primary', 'text-on-primary');
+        btn.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+      }
+    });
+
+    const cards = document.querySelectorAll('.tour-card');
+    cards.forEach(card => {
+      if(zone === 'all' || card.getAttribute('data-zone') === zone) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Live Tour Search
+  function searchTours() {
+    const input = document.getElementById('tourSearchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.tour-card');
+    cards.forEach(card => {
+      const title = card.getAttribute('data-title').toLowerCase();
+      if(title.includes(input)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Toggle Harbor Alert (Emergency Mar Picado)
+  function toggleHarborAlert(checkbox) {
+    const statusText = document.getElementById('harborStatusText');
+    if (checkbox.checked) {
+      statusText.textContent = 'ALERTA: Salidas restringidas';
+      statusText.classList.remove('text-secondary');
+      statusText.classList.add('text-tertiary', 'font-bold');
+      alert('Se activÃ³ el protocolo de CapitanÃ­a de Puerto. Se notificarÃ¡ a los clientes vÃ­a WhatsApp con opciÃ³n de reprogramaciÃ³n.');
+    } else {
+      statusText.textContent = 'Salidas normales abiertas';
+      statusText.classList.remove('text-tertiary', 'font-bold');
+      statusText.classList.add('text-secondary');
+    }
+  }
+
+  // Quick Pause Tour
+  function toggleTourPause(button) {
+    const icon = button.querySelector('.material-symbols-outlined');
+    if (icon.textContent === 'pause_circle') {
+      icon.textContent = 'play_circle';
+      button.classList.add('bg-tertiary-fixed', 'text-tertiary');
+      button.title = 'Reanudar tour';
+      alert('Tour pausado temporalmente en catÃ¡logo y bot de reservas.');
+    } else {
+      icon.textContent = 'pause_circle';
+      button.classList.remove('bg-tertiary-fixed', 'text-tertiary');
+      button.title = 'Pausar reservas de este tour';
+      alert('Tour reactivado con Ã©xito.');
+    }
+  }
+
+  // Drawer Management
+  let currentCapacity = 20;
+
+  function openEditDrawer(tourKey) {
+    const drawer = document.getElementById('tourDrawer');
+    const backdrop = document.getElementById('drawerBackdrop');
+    const title = document.getElementById('drawerTitle');
+    const nameInput = document.getElementById('formTourName');
+
+    if(tourKey === 'new') {
+      title.textContent = 'Crear Nuevo Tour o Paquete';
+      nameInput.value = '';
+    } else if(tourKey === 'tortuga') {
+      title.textContent = 'Editar: Tour Isla Tortuga VIP';
+      nameInput.value = 'Tour Isla Tortuga VIP con Snorkeling & Almuerzo';
+    } else {
+      title.textContent = 'Editar: Tour Nocturno de Bioluminiscencia';
+      nameInput.value = 'Tour Nocturno de Bioluminiscencia en Paquera';
+    }
+
+    drawer.classList.remove('hidden');
+    drawer.classList.add('flex');
+    backdrop.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeEditDrawer() {
+    const drawer = document.getElementById('tourDrawer');
+    const backdrop = document.getElementById('drawerBackdrop');
+    drawer.classList.add('hidden');
+    drawer.classList.remove('flex');
+    backdrop.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  // Capacity Counter Controls
+  function incrementCapacity() {
+    currentCapacity += 1;
+    document.getElementById('formCapacityVal').textContent = currentCapacity + ' personas';
+  }
+
+  function decrementCapacity() {
+    if (currentCapacity > 1) {
+      currentCapacity -= 1;
+      document.getElementById('formCapacityVal').textContent = currentCapacity + ' personas';
+    }
+  }
+
+  // Dual Currency Rate Synchronizer
+  function syncCRCPrice(usdValue) {
+    const rate = 520;
+    const crc = Math.round(usdValue * rate);
+    document.getElementById('formPriceCRC').value = crc;
+  }
+
+  // Form Submit Simulation
+  function saveTourChanges(e) {
+    e.preventDefault();
+    closeEditDrawer();
+    alert('Â¡Cambios guardados con Ã©xito en el catÃ¡logo de RM Tours! La informaciÃ³n ya estÃ¡ actualizada en WhatsApp y la web.');
+  }
+</script></main></div></body></html>

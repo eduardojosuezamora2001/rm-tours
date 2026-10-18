@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "types": [
+      "./worker-configuration.d.ts",
+      "node"
+    ],
+    "jsx": "react-jsx",
+    "noEmit": true
+  }
+}

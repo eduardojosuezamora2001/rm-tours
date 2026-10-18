@@ -1,0 +1,17 @@
+{
+  "about": "About this experience",
+  "plans": "Choose your experience",
+  "plansBody": "Check the services included in each plan. Final pricing is confirmed on WhatsApp.",
+  "included": "What’s included",
+  "meeting": "Meeting point",
+  "duration": "Duration",
+  "schedules": "Indicative departure times",
+  "select": "Get a quote for this plan",
+  "person": "per person",
+  "group": "per group",
+  "hour": "per hour",
+  "indicative": "Indicative price in USD. Subject to confirmation.",
+  "gallery": "Experience gallery",
+  "image": "View photo {{count}}",
+  "preview": "Private preview · This tour may not be published"
+}

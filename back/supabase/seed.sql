@@ -1,0 +1,1 @@
+-- No personal data, owner accounts or commercial content are seeded automatically.

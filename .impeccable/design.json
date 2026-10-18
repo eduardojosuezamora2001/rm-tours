@@ -1,0 +1,819 @@
+{
+    "schemaVersion":  2,
+    "generatedAt":  "2026-10-15T20:26:35.3686068Z",
+    "title":  "Design System: RM Tours",
+    "extensions":  {
+                       "evidence":  {
+                                        "sourceFiles":  [
+                                                            "front/src/stitch-tokens.css",
+                                                            "front/src/index.css",
+                                                            "front/src/components/layout.tsx",
+                                                            "front/src/components/stitch-icon.tsx",
+                                                            "front/src/components/ui/button.tsx",
+                                                            "front/src/components/ui/input.tsx",
+                                                            "front/src/components/ui/card.tsx",
+                                                            "front/src/features/catalog/home-page.tsx",
+                                                            "front/src/features/catalog/catalog-page.tsx",
+                                                            "front/src/features/catalog/tour-card.tsx",
+                                                            "front/src/features/catalog/tour-detail.tsx",
+                                                            "front/src/features/catalog/media.ts",
+                                                            "front/src/features/quote/quote-page.tsx",
+                                                            "front/src/features/admin/layout.tsx",
+                                                            "front/src/features/admin/tour-list.tsx",
+                                                            "front/src/features/admin/tour-editor.tsx",
+                                                            "front/src/features/admin/tour-editor-parts.tsx",
+                                                            "front/src/hooks/use-mobile-viewport.ts"
+                                                        ],
+                                        "referenceCropsViewed":  [
+                                                                     ".impeccable/review/stitch/home-reference-top.png",
+                                                                     ".impeccable/review/stitch/mobileCatalog-reference-top.png",
+                                                                     ".impeccable/review/stitch/detail-reference-top.png"
+                                                                 ],
+                                        "sourceHashes":  {
+                                                             "front/src/stitch-tokens.css":  "76e42e17d47d352bb22a61d9ff38110eb76535c44d12e389f6a2ee4ff0e0c9c5",
+                                                             "front/src/index.css":  "dd7869e167a85b5d3f9f8477b410018c517b676b7cf6a5bd55963cadd557d118",
+                                                             "front/src/components/layout.tsx":  "edcb3c6f5f956c43c2481671cfbf36730ae7efaff4fab5c104a8a5038566bc36",
+                                                             "front/src/components/stitch-icon.tsx":  "c16d2be98b8eb7ec23dfe9e4477244d607f26c2e839223e134cf5cf7cf730a5d",
+                                                             "front/src/components/ui/button.tsx":  "0bd99cc527512abac46e25341060d83fb5f3f1cb010a6f2d4b42d38d55d31ea0",
+                                                             "front/src/components/ui/input.tsx":  "8084fb1c0ee4ea41bb6dc77d9c35bed7815d0ab342841fb940226ff63bae2a1b",
+                                                             "front/src/components/ui/card.tsx":  "62e3bda76db6e14692bef30d8ffc13dd837d77d39e77ccaa0fe004e1fb2ae811",
+                                                             "front/src/features/catalog/home-page.tsx":  "71411eb31ceb0c1db0e0cb68de663a60bcc5f71cbb68e9c37c43c0afcfb252a2",
+                                                             "front/src/features/catalog/catalog-page.tsx":  "b5009c9efbac1c18e75004dcce22145da3cf296b1c3c4be621cd8537a5b4e7d2",
+                                                             "front/src/features/catalog/tour-card.tsx":  "62cf676e999d76a6bdef00caee1f0b2f27a16a6675cca503078536f3fc5ebb29",
+                                                             "front/src/features/catalog/tour-detail.tsx":  "06376539dcc1db6c58092b5b6e35ef76e620f1808e454f36a175266c926dd67c",
+                                                             "front/src/features/catalog/media.ts":  "7a13e4069669c4d86ce37624cb7311c459d9e28398f1806d4fc54a3482067b53",
+                                                             "front/src/features/quote/quote-page.tsx":  "a3f1d689f40b5cb30fadf9ec4827e53a82ad39325b492364144c387de8554f8f",
+                                                             "front/src/features/admin/layout.tsx":  "0a9711c974205b6e02b57c991a923da748f97379312dd64d4b9247082bce6ea0",
+                                                             "front/src/features/admin/tour-list.tsx":  "254e8456e4df964b143228fce8c7bc8b8f3b2420457bdbd2689bc3defbb47d0c",
+                                                             "front/src/features/admin/tour-editor.tsx":  "f3b84e440d6a2a14f171d9725a9e279a4734613efa7fe70c10896cb43e7e3be3",
+                                                             "front/src/features/admin/tour-editor-parts.tsx":  "3c94f0d64167c748d5e24c9680c0738d53587cd538cc2cb855c3e829cfe73982",
+                                                             "front/src/hooks/use-mobile-viewport.ts":  "8126fc70553e5773c2472027e955b55f99f81712a2174ae8f00dc182a5176b14"
+                                                         },
+                                        "buildScreenshotsViewed":  [
+                                                                       ".impeccable/review/stitch/home-1323-build-top.png",
+                                                                       ".impeccable/review/stitch/home-390-build-top.png",
+                                                                       ".impeccable/review/stitch/catalog-1323-build-top.png",
+                                                                       ".impeccable/review/stitch/catalog-390-build-top.png",
+                                                                       ".impeccable/review/stitch/detail-1323-build-top.png",
+                                                                       ".impeccable/review/stitch/detail-390-build-top.png",
+                                                                       ".impeccable/review/stitch/home-390-build-full.png"
+                                                                   ],
+                                        "captureArtifacts":  [
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/home-1323-build-top.png",
+                                                                     "sha256":  "b4f456616477e783728d06a58bef1ada52da6fb8e1759429e181ab2f09b1c26a",
+                                                                     "bytes":  535070,
+                                                                     "modifiedAt":  "2026-10-15T20:25:14.0899087Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/home-1323-build-full.png",
+                                                                     "sha256":  "7eee792e8387380386961b4101439b53a4df6f124b0f53b044b883843b717f96",
+                                                                     "bytes":  2380815,
+                                                                     "modifiedAt":  "2026-10-15T20:25:14.6388108Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/home-390-build-top.png",
+                                                                     "sha256":  "fd23aa578b0e6b4189c67fc7b19ef5d75022b928ff239e2009938c0701d64530",
+                                                                     "bytes":  255927,
+                                                                     "modifiedAt":  "2026-10-15T20:25:15.8609741Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/home-390-build-full.png",
+                                                                     "sha256":  "14fd31f9e1f81072e92dbb93f57f4ab92145aa78b5142a57f6667e6db4eb41ba",
+                                                                     "bytes":  907793,
+                                                                     "modifiedAt":  "2026-10-15T20:25:16.0432270Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/catalog-1323-build-top.png",
+                                                                     "sha256":  "1471d35eefcdd31c553faa1912086dcc30d431232d54b45fc76117b02084cbbb",
+                                                                     "bytes":  513866,
+                                                                     "modifiedAt":  "2026-10-15T20:25:17.2047476Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/catalog-1323-build-full.png",
+                                                                     "sha256":  "051e5eb4255d6b1c48d8c8ac439689b7847d547d061a1309ee03b890138fda3c",
+                                                                     "bytes":  1102273,
+                                                                     "modifiedAt":  "2026-10-15T20:25:17.4802751Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/catalog-390-build-top.png",
+                                                                     "sha256":  "159a369baeb917d4c8895754fb738dfcefcf22b6b4ab925830cee72da3f0f344",
+                                                                     "bytes":  192717,
+                                                                     "modifiedAt":  "2026-10-15T20:25:18.5942132Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/catalog-390-build-full.png",
+                                                                     "sha256":  "8388247b114da98204878eef0a55d6e079e57f5e465fc7ddfb53fb414d45e331",
+                                                                     "bytes":  1244030,
+                                                                     "modifiedAt":  "2026-10-15T20:25:18.7956721Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/detail-1323-build-top.png",
+                                                                     "sha256":  "4788b855c84e0c06d1c3564b0068a7bc0e0c80909c359599ef80800c416264b4",
+                                                                     "bytes":  762947,
+                                                                     "modifiedAt":  "2026-10-15T20:25:20.5596821Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/detail-1323-build-full.png",
+                                                                     "sha256":  "b6364f256eada8e474977ad912ec36e8288501374a4b15ff9a500a231b71b8e1",
+                                                                     "bytes":  1025446,
+                                                                     "modifiedAt":  "2026-10-15T20:25:20.8760559Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/detail-390-build-top.png",
+                                                                     "sha256":  "555f762c9524b2d3732e7e07e36e6a95c87c82125742afee925d8fac41f8183b",
+                                                                     "bytes":  236382,
+                                                                     "modifiedAt":  "2026-10-15T20:25:22.3141870Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/stitch/detail-390-build-full.png",
+                                                                     "sha256":  "2510e0d75df77cdf2695ee97c2dc23597e28ff41e4df44343912fd187bf86277",
+                                                                     "bytes":  450389,
+                                                                     "modifiedAt":  "2026-10-15T20:25:22.4466912Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/admin-list-desktop.png",
+                                                                     "sha256":  "c13ed50d3295ccd49f145d73060d64c0b40f0952eab13fcd08bc38b40294c8cd",
+                                                                     "bytes":  1251704,
+                                                                     "modifiedAt":  "2026-10-15T20:23:33.0295271Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/admin-list-mobile.png",
+                                                                     "sha256":  "8fa9269e2f32e54df457d02a39d312fdce82b96edaaaadfb888a1a08adc68692",
+                                                                     "bytes":  6758395,
+                                                                     "modifiedAt":  "2026-10-15T20:24:20.3200955Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/admin-editor-desktop.png",
+                                                                     "sha256":  "3aa0bc0304eb6aea125e992eee5843954fb1076f79a4035a5e9b4dfabe03b97c",
+                                                                     "bytes":  284850,
+                                                                     "modifiedAt":  "2026-10-15T20:23:45.4495784Z"
+                                                                 },
+                                                                 {
+                                                                     "path":  ".impeccable/review/admin-editor-mobile.png",
+                                                                     "sha256":  "789489ed7cb14c7a8574526c4c0e6158adf38394c395f1b6b5ebf37f4a753da7",
+                                                                     "bytes":  91790,
+                                                                     "modifiedAt":  "2026-10-15T20:24:30.9875786Z"
+                                                                 }
+                                                             ],
+                                        "reportedValidation":  {
+                                                                   "lint":  "final passed",
+                                                                   "captureScript":  "completed with exit 0 after final end-to-end run",
+                                                                   "fontReadiness":  "loaded in all six public combinations",
+                                                                   "horizontalOverflow":  "none reported",
+                                                                   "unit":  {
+                                                                                "passed":  9,
+                                                                                "timing":  "Earlier implementation pass"
+                                                                            },
+                                                                   "recordedAt":  "2026-10-15T20:26:35.3648993Z",
+                                                                   "targetedGalleryNavigation":  {
+                                                                                                     "passed":  2,
+                                                                                                     "timing":  "Earlier after gallery-navigation change"
+                                                                                                 },
+                                                                   "build":  "final passed",
+                                                                   "reportedBy":  "Implementation agent and scoped visual reviewer",
+                                                                   "visualReview":  {
+                                                                                        "scope":  "Eight requested fixes and reported regression checks",
+                                                                                        "requestedFixes":  8,
+                                                                                        "remaining":  "clear",
+                                                                                        "limitations":  "Not a new full-surface review or pixel-perfect certification",
+                                                                                        "disposition":  "ship",
+                                                                                        "resolved":  8
+                                                                                    },
+                                                                   "publicCombinations":  6,
+                                                                   "endToEnd":  {
+                                                                                    "timing":  "Final stable implementation",
+                                                                                    "includes":  [
+                                                                                                     "desktop bio-0 versus mobile bio-mobile currentSrc",
+                                                                                                     "navigation of four gallery photos"
+                                                                                                 ],
+                                                                                    "passed":  10
+                                                                                },
+                                                                   "documentationPass":  "Inspected six final public top captures and mobile home full capture; inventoried 12 public and 4 admin captures; application checks were not rerun here."
+                                                               },
+                                        "supplementaryArtifactsViewed":  [
+                                                                             ".impeccable/review/admin-editor-desktop.png",
+                                                                             "front/public/brand/bio-mobile.jpg"
+                                                                         ]
+                                    },
+                       "shadows":  [
+                                       {
+                                           "name":  "card-rest",
+                                           "value":  "0 1px 3px rgb(0 0 0 / 0.1)",
+                                           "purpose":  "Tour and administrative card elevation."
+                                       },
+                                       {
+                                           "name":  "card-hover",
+                                           "value":  "0 10px 24px rgb(0 30 49 / 0.12)",
+                                           "purpose":  "Tour-card hover depth."
+                                       },
+                                       {
+                                           "name":  "header",
+                                           "value":  "0 1px 8px rgb(0 0 0 / 0.04)",
+                                           "purpose":  "Fixed public header and administrative chrome."
+                                       },
+                                       {
+                                           "name":  "gallery",
+                                           "value":  "0 8px 16px -8px rgb(0 30 49 / 0.3)",
+                                           "purpose":  "Detail gallery frames."
+                                       },
+                                       {
+                                           "name":  "enquiry",
+                                           "value":  "0 10px 24px -8px rgb(0 30 49 / 0.2)",
+                                           "purpose":  "Detail quotation panel."
+                                       },
+                                       {
+                                           "name":  "hero-console",
+                                           "value":  "0 20px 48px -10px rgb(0 30 49 / 0.35)",
+                                           "purpose":  "Desktop photographic hero search console."
+                                       }
+                                   ],
+                       "authority":  {
+                                         "referenceAssets":  [
+                                                                 {
+                                                                     "sha256":  "c131bd3f45d729219331a922544de72636d8903c342837ac7cf949a918a93e17",
+                                                                     "path":  "front/desing/stitch/61d46cf5d8c548d081dad5101cd27de6.html"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "c0bdc0c3dc931f6d653c1876c2697ce526e826dafcd80b23b57696885b4a592e",
+                                                                     "path":  "front/desing/stitch/61d46cf5d8c548d081dad5101cd27de6.png"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "4f2f2be47b41d567ee1e5ad164d6581d7bbeeef9c62e19a463ae25becd7936bd",
+                                                                     "path":  "front/desing/stitch/9c2671ea77f1488ba46ab3410d54d3ab.html"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "a54616b447ede572e65a3eabd9af2945217ecc322379a8894cc267838d590c04",
+                                                                     "path":  "front/desing/stitch/9c2671ea77f1488ba46ab3410d54d3ab.png"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "4dfded16228dddb171922243c9f36c2434754c0f58e62c9f75a204ebb944930f",
+                                                                     "path":  "front/desing/stitch/aad1dd39ddc243f79879de0debcdbb44.html"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "c1be17a4c343a0be717f2bff3634d5b1151dd026cedb19212bbfe186ead4cfca",
+                                                                     "path":  "front/desing/stitch/aad1dd39ddc243f79879de0debcdbb44.png"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "e500c89f696d85849583cdd1a414e7f84c517634ebfde39d32064d4fadce6a0e",
+                                                                     "path":  "front/desing/stitch/ce1dcd1953be4a37aad150307919c9af.html"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "9d61a60e3f6dd8f3425f22cb22394240c9f5189f1fd04a462ef03a8acfca4a96",
+                                                                     "path":  "front/desing/stitch/ce1dcd1953be4a37aad150307919c9af.png"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "d779f2d22e576368473236ab8326eb5acd16521104bbb1267d3037d220fba91b",
+                                                                     "path":  "front/desing/stitch/cea7a57b40944a608fd7abf54e5a32ba.html"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "665d60a7fae7e243f4d7a3ededa02665015c5fc0fc8e72331e70ef225bf5741b",
+                                                                     "path":  "front/desing/stitch/cea7a57b40944a608fd7abf54e5a32ba.png"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "9dbf1f78cf13d9bb50503b60085bbfb1690ee03ef6390e8115c7b61437cac1c9",
+                                                                     "path":  "front/desing/stitch/de3538226ad6447f9d9c84a0d3cda6f1.html"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "858880dff23d39df1ae46c706d35d51aaa5b53247b56ffad112a732803079cb2",
+                                                                     "path":  "front/desing/stitch/de3538226ad6447f9d9c84a0d3cda6f1.png"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "5d55a93d48043ef86a251ccd0db3ba4b6de163efcc53e82562023d0d7de2ed55",
+                                                                     "path":  "front/desing/stitch/ef6bb58f6d2c4e40b2208e3e51c6a4c1.html"
+                                                                 },
+                                                                 {
+                                                                     "sha256":  "0688fde91986937546774f09a3d7d9addb4ee989966e076e4016af3c2244f88c",
+                                                                     "path":  "front/desing/stitch/ef6bb58f6d2c4e40b2208e3e51c6a4c1.png"
+                                                                 }
+                                                             ],
+                                         "source":  "Stitch",
+                                         "referenceDirectory":  "front/desing/stitch",
+                                         "supersedes":  "Earlier DESIGN interpretation and visual approval",
+                                         "userInstruction":  "Las interfaces deben seguir al pie de la letra los diseños de Stitch.",
+                                         "projectId":  "4366171717337285856"
+                                     },
+                       "mediaConvention":  {
+                                               "adminPersistence":  "Reorder controls persist position, section_id and bilingual alt; help and catalogue/home/detail/mobile-detail role badges explain the convention.",
+                                               "caption":  "Bilingual alt supplies accessible image text and visible gallery captions",
+                                               "catalogCover":  "First unassigned photo",
+                                               "detailGallery":  "Unassigned photos after first two; with two use second, with one use first",
+                                               "homeCover":  "Second unassigned photo, falling back to first",
+                                               "order":  "Unassigned media sorted by ascending position",
+                                               "sectionMedia":  "Photos with section_id stay in their associated gallery",
+                                               "mobileDetailHero":  "Fourth detail-gallery photo (sixth unassigned photo in total, index 5); fallback to first gallery photo. Desktop leading composition retains its first three gallery photos.",
+                                               "responsiveAccessibility":  "use-mobile-viewport synchronizes mobileHero image selection, bilingual alt, caption and clicked viewer image when the viewport crosses 767px."
+                                           },
+                       "typographyMeta":  {
+                                              "headline-lg-mobile":  {
+                                                                         "displayName":  "Mobile headline",
+                                                                         "purpose":  "Mobile hero, catalogue and detail headings."
+                                                                     },
+                                              "body-md":  {
+                                                              "displayName":  "Body",
+                                                              "purpose":  "Declared source body token; page overrides remain authoritative."
+                                                          },
+                                              "headline-sm":  {
+                                                                  "displayName":  "Home card headline",
+                                                                  "purpose":  "Home-card Montserrat title treatment."
+                                                              },
+                                              "body-sm":  {
+                                                              "displayName":  "Compact body",
+                                                              "purpose":  "Descriptions and compact copy."
+                                                          },
+                                              "headline-md":  {
+                                                                  "displayName":  "Section headline",
+                                                                  "purpose":  "Source section headings."
+                                                              },
+                                              "headline-lg":  {
+                                                                  "displayName":  "Desktop headline",
+                                                                  "purpose":  "Desktop detail and catalogue headings."
+                                                              },
+                                              "label-md":  {
+                                                               "displayName":  "Label",
+                                                               "purpose":  "Source compact labels."
+                                                           },
+                                              "display-hero":  {
+                                                                   "displayName":  "Desktop hero",
+                                                                   "purpose":  "Source desktop hero headline."
+                                                               }
+                                          },
+                       "limitations":  [
+                                           "Documentation/source audit only; no pixel-parity certification.",
+                                           "Previous screenshots outside the refreshed Stitch review set are stale for this implementation.",
+                                           "Card specimens show body/footer only and do not replace full reference compositions.",
+                                           "Unverified source claims are omitted or truthfully replaced; no bookings or payments added."
+                                       ],
+                       "motion":  [
+                                      {
+                                          "name":  "card-hover",
+                                          "value":  "box-shadow .3s ease",
+                                          "purpose":  "Source card hover feedback."
+                                      },
+                                      {
+                                          "name":  "gallery-photo",
+                                          "value":  "transform .7s ease",
+                                          "purpose":  "Gallery photograph hover scaling."
+                                      },
+                                      {
+                                          "name":  "reduced-motion",
+                                          "value":  "animation:none; transition:none; scroll-behavior:auto",
+                                          "purpose":  "Current reduced-motion override."
+                                      }
+                                  ],
+                       "colorMeta":  {
+                                         "primary":  {
+                                                         "displayName":  "primary",
+                                                         "tonalRamp":  [
+                                                                           "oklch(15% 0.07550 241.32)",
+                                                                           "oklch(26% 0.07550 241.32)",
+                                                                           "oklch(38% 0.07550 241.32)",
+                                                                           "oklch(49% 0.07550 241.32)",
+                                                                           "oklch(61% 0.07550 241.32)",
+                                                                           "oklch(72% 0.07550 241.32)",
+                                                                           "oklch(84% 0.07550 241.32)",
+                                                                           "oklch(95% 0.07550 241.32)"
+                                                                       ],
+                                                         "role":  "primary"
+                                                     },
+                                         "primary-container":  {
+                                                                   "displayName":  "primary container",
+                                                                   "tonalRamp":  [
+                                                                                     "oklch(15% 0.08816 240.94)",
+                                                                                     "oklch(26% 0.08816 240.94)",
+                                                                                     "oklch(38% 0.08816 240.94)",
+                                                                                     "oklch(49% 0.08816 240.94)",
+                                                                                     "oklch(61% 0.08816 240.94)",
+                                                                                     "oklch(72% 0.08816 240.94)",
+                                                                                     "oklch(84% 0.08816 240.94)",
+                                                                                     "oklch(95% 0.08816 240.94)"
+                                                                                 ],
+                                                                   "role":  "primary"
+                                                               },
+                                         "primary-fixed":  {
+                                                               "displayName":  "primary fixed",
+                                                               "tonalRamp":  [
+                                                                                 "oklch(15% 0.04468 246.24)",
+                                                                                 "oklch(26% 0.04468 246.24)",
+                                                                                 "oklch(38% 0.04468 246.24)",
+                                                                                 "oklch(49% 0.04468 246.24)",
+                                                                                 "oklch(61% 0.04468 246.24)",
+                                                                                 "oklch(72% 0.04468 246.24)",
+                                                                                 "oklch(84% 0.04468 246.24)",
+                                                                                 "oklch(95% 0.04468 246.24)"
+                                                                             ],
+                                                               "role":  "primary"
+                                                           },
+                                         "on-primary":  {
+                                                            "displayName":  "on primary",
+                                                            "tonalRamp":  [
+                                                                              "oklch(15% 0.00000 0.00)",
+                                                                              "oklch(26% 0.00000 0.00)",
+                                                                              "oklch(38% 0.00000 0.00)",
+                                                                              "oklch(49% 0.00000 0.00)",
+                                                                              "oklch(61% 0.00000 0.00)",
+                                                                              "oklch(72% 0.00000 0.00)",
+                                                                              "oklch(84% 0.00000 0.00)",
+                                                                              "oklch(95% 0.00000 0.00)"
+                                                                          ],
+                                                            "role":  "primary"
+                                                        },
+                                         "secondary":  {
+                                                           "displayName":  "secondary",
+                                                           "tonalRamp":  [
+                                                                             "oklch(15% 0.09711 166.57)",
+                                                                             "oklch(26% 0.09711 166.57)",
+                                                                             "oklch(38% 0.09711 166.57)",
+                                                                             "oklch(49% 0.09711 166.57)",
+                                                                             "oklch(61% 0.09711 166.57)",
+                                                                             "oklch(72% 0.09711 166.57)",
+                                                                             "oklch(84% 0.09711 166.57)",
+                                                                             "oklch(95% 0.09711 166.57)"
+                                                                         ],
+                                                           "role":  "secondary"
+                                                       },
+                                         "secondary-container":  {
+                                                                     "displayName":  "secondary container",
+                                                                     "tonalRamp":  [
+                                                                                       "oklch(15% 0.10413 165.40)",
+                                                                                       "oklch(26% 0.10413 165.40)",
+                                                                                       "oklch(38% 0.10413 165.40)",
+                                                                                       "oklch(49% 0.10413 165.40)",
+                                                                                       "oklch(61% 0.10413 165.40)",
+                                                                                       "oklch(72% 0.10413 165.40)",
+                                                                                       "oklch(84% 0.10413 165.40)",
+                                                                                       "oklch(95% 0.10413 165.40)"
+                                                                                   ],
+                                                                     "role":  "secondary"
+                                                                 },
+                                         "on-secondary":  {
+                                                              "displayName":  "on secondary",
+                                                              "tonalRamp":  [
+                                                                                "oklch(15% 0.00000 0.00)",
+                                                                                "oklch(26% 0.00000 0.00)",
+                                                                                "oklch(38% 0.00000 0.00)",
+                                                                                "oklch(49% 0.00000 0.00)",
+                                                                                "oklch(61% 0.00000 0.00)",
+                                                                                "oklch(72% 0.00000 0.00)",
+                                                                                "oklch(84% 0.00000 0.00)",
+                                                                                "oklch(95% 0.00000 0.00)"
+                                                                            ],
+                                                              "role":  "secondary"
+                                                          },
+                                         "on-secondary-fixed-variant":  {
+                                                                            "displayName":  "on secondary fixed variant",
+                                                                            "tonalRamp":  [
+                                                                                              "oklch(15% 0.07898 167.14)",
+                                                                                              "oklch(26% 0.07898 167.14)",
+                                                                                              "oklch(38% 0.07898 167.14)",
+                                                                                              "oklch(49% 0.07898 167.14)",
+                                                                                              "oklch(61% 0.07898 167.14)",
+                                                                                              "oklch(72% 0.07898 167.14)",
+                                                                                              "oklch(84% 0.07898 167.14)",
+                                                                                              "oklch(95% 0.07898 167.14)"
+                                                                                          ],
+                                                                            "role":  "secondary"
+                                                                        },
+                                         "tertiary":  {
+                                                          "displayName":  "tertiary",
+                                                          "tonalRamp":  [
+                                                                            "oklch(15% 0.12492 33.22)",
+                                                                            "oklch(26% 0.12492 33.22)",
+                                                                            "oklch(38% 0.12492 33.22)",
+                                                                            "oklch(49% 0.12492 33.22)",
+                                                                            "oklch(61% 0.12492 33.22)",
+                                                                            "oklch(72% 0.12492 33.22)",
+                                                                            "oklch(84% 0.12492 33.22)",
+                                                                            "oklch(95% 0.12492 33.22)"
+                                                                        ],
+                                                          "role":  "tertiary"
+                                                      },
+                                         "tertiary-container":  {
+                                                                    "displayName":  "tertiary container",
+                                                                    "tonalRamp":  [
+                                                                                      "oklch(15% 0.15586 33.24)",
+                                                                                      "oklch(26% 0.15586 33.24)",
+                                                                                      "oklch(38% 0.15586 33.24)",
+                                                                                      "oklch(49% 0.15586 33.24)",
+                                                                                      "oklch(61% 0.15586 33.24)",
+                                                                                      "oklch(72% 0.15586 33.24)",
+                                                                                      "oklch(84% 0.15586 33.24)",
+                                                                                      "oklch(95% 0.15586 33.24)"
+                                                                                  ],
+                                                                    "role":  "tertiary"
+                                                                },
+                                         "on-tertiary":  {
+                                                             "displayName":  "on tertiary",
+                                                             "tonalRamp":  [
+                                                                               "oklch(15% 0.00000 0.00)",
+                                                                               "oklch(26% 0.00000 0.00)",
+                                                                               "oklch(38% 0.00000 0.00)",
+                                                                               "oklch(49% 0.00000 0.00)",
+                                                                               "oklch(61% 0.00000 0.00)",
+                                                                               "oklch(72% 0.00000 0.00)",
+                                                                               "oklch(84% 0.00000 0.00)",
+                                                                               "oklch(95% 0.00000 0.00)"
+                                                                           ],
+                                                             "role":  "tertiary"
+                                                         },
+                                         "surface":  {
+                                                         "displayName":  "surface",
+                                                         "tonalRamp":  [
+                                                                           "oklch(15% 0.00794 286.25)",
+                                                                           "oklch(26% 0.00794 286.25)",
+                                                                           "oklch(38% 0.00794 286.25)",
+                                                                           "oklch(49% 0.00794 286.25)",
+                                                                           "oklch(61% 0.00794 286.25)",
+                                                                           "oklch(72% 0.00794 286.25)",
+                                                                           "oklch(84% 0.00794 286.25)",
+                                                                           "oklch(95% 0.00794 286.25)"
+                                                                       ],
+                                                         "role":  "neutral"
+                                                     },
+                                         "surface-container-lowest":  {
+                                                                          "displayName":  "surface container lowest",
+                                                                          "tonalRamp":  [
+                                                                                            "oklch(15% 0.00000 0.00)",
+                                                                                            "oklch(26% 0.00000 0.00)",
+                                                                                            "oklch(38% 0.00000 0.00)",
+                                                                                            "oklch(49% 0.00000 0.00)",
+                                                                                            "oklch(61% 0.00000 0.00)",
+                                                                                            "oklch(72% 0.00000 0.00)",
+                                                                                            "oklch(84% 0.00000 0.00)",
+                                                                                            "oklch(95% 0.00000 0.00)"
+                                                                                        ],
+                                                                          "role":  "neutral"
+                                                                      },
+                                         "surface-container-low":  {
+                                                                       "displayName":  "surface container low",
+                                                                       "tonalRamp":  [
+                                                                                         "oklch(15% 0.01636 274.82)",
+                                                                                         "oklch(26% 0.01636 274.82)",
+                                                                                         "oklch(38% 0.01636 274.82)",
+                                                                                         "oklch(49% 0.01636 274.82)",
+                                                                                         "oklch(61% 0.01636 274.82)",
+                                                                                         "oklch(72% 0.01636 274.82)",
+                                                                                         "oklch(84% 0.01636 274.82)",
+                                                                                         "oklch(95% 0.01636 274.82)"
+                                                                                     ],
+                                                                       "role":  "neutral"
+                                                                   },
+                                         "surface-container":  {
+                                                                   "displayName":  "surface container",
+                                                                   "tonalRamp":  [
+                                                                                     "oklch(15% 0.02412 267.93)",
+                                                                                     "oklch(26% 0.02412 267.93)",
+                                                                                     "oklch(38% 0.02412 267.93)",
+                                                                                     "oklch(49% 0.02412 267.93)",
+                                                                                     "oklch(61% 0.02412 267.93)",
+                                                                                     "oklch(72% 0.02412 267.93)",
+                                                                                     "oklch(84% 0.02412 267.93)",
+                                                                                     "oklch(95% 0.02412 267.93)"
+                                                                                 ],
+                                                                   "role":  "neutral"
+                                                               },
+                                         "surface-container-high":  {
+                                                                        "displayName":  "surface container high",
+                                                                        "tonalRamp":  [
+                                                                                          "oklch(15% 0.03305 266.93)",
+                                                                                          "oklch(26% 0.03305 266.93)",
+                                                                                          "oklch(38% 0.03305 266.93)",
+                                                                                          "oklch(49% 0.03305 266.93)",
+                                                                                          "oklch(61% 0.03305 266.93)",
+                                                                                          "oklch(72% 0.03305 266.93)",
+                                                                                          "oklch(84% 0.03305 266.93)",
+                                                                                          "oklch(95% 0.03305 266.93)"
+                                                                                      ],
+                                                                        "role":  "neutral"
+                                                                    },
+                                         "surface-container-highest":  {
+                                                                           "displayName":  "surface container highest",
+                                                                           "tonalRamp":  [
+                                                                                             "oklch(15% 0.03486 265.99)",
+                                                                                             "oklch(26% 0.03486 265.99)",
+                                                                                             "oklch(38% 0.03486 265.99)",
+                                                                                             "oklch(49% 0.03486 265.99)",
+                                                                                             "oklch(61% 0.03486 265.99)",
+                                                                                             "oklch(72% 0.03486 265.99)",
+                                                                                             "oklch(84% 0.03486 265.99)",
+                                                                                             "oklch(95% 0.03486 265.99)"
+                                                                                         ],
+                                                                           "role":  "neutral"
+                                                                       },
+                                         "on-surface":  {
+                                                            "displayName":  "on surface",
+                                                            "tonalRamp":  [
+                                                                              "oklch(15% 0.03697 258.85)",
+                                                                              "oklch(26% 0.03697 258.85)",
+                                                                              "oklch(38% 0.03697 258.85)",
+                                                                              "oklch(49% 0.03697 258.85)",
+                                                                              "oklch(61% 0.03697 258.85)",
+                                                                              "oklch(72% 0.03697 258.85)",
+                                                                              "oklch(84% 0.03697 258.85)",
+                                                                              "oklch(95% 0.03697 258.85)"
+                                                                          ],
+                                                            "role":  "neutral"
+                                                        },
+                                         "on-surface-variant":  {
+                                                                    "displayName":  "on surface variant",
+                                                                    "tonalRamp":  [
+                                                                                      "oklch(15% 0.01423 252.25)",
+                                                                                      "oklch(26% 0.01423 252.25)",
+                                                                                      "oklch(38% 0.01423 252.25)",
+                                                                                      "oklch(49% 0.01423 252.25)",
+                                                                                      "oklch(61% 0.01423 252.25)",
+                                                                                      "oklch(72% 0.01423 252.25)",
+                                                                                      "oklch(84% 0.01423 252.25)",
+                                                                                      "oklch(95% 0.01423 252.25)"
+                                                                                  ],
+                                                                    "role":  "neutral"
+                                                                },
+                                         "outline-variant":  {
+                                                                 "displayName":  "outline variant",
+                                                                 "tonalRamp":  [
+                                                                                   "oklch(15% 0.01299 255.52)",
+                                                                                   "oklch(26% 0.01299 255.52)",
+                                                                                   "oklch(38% 0.01299 255.52)",
+                                                                                   "oklch(49% 0.01299 255.52)",
+                                                                                   "oklch(61% 0.01299 255.52)",
+                                                                                   "oklch(72% 0.01299 255.52)",
+                                                                                   "oklch(84% 0.01299 255.52)",
+                                                                                   "oklch(95% 0.01299 255.52)"
+                                                                               ],
+                                                                 "role":  "neutral"
+                                                             },
+                                         "input":  {
+                                                       "displayName":  "input",
+                                                       "tonalRamp":  [
+                                                                         "oklch(15% 0.01808 240.03)",
+                                                                         "oklch(26% 0.01808 240.03)",
+                                                                         "oklch(38% 0.01808 240.03)",
+                                                                         "oklch(49% 0.01808 240.03)",
+                                                                         "oklch(61% 0.01808 240.03)",
+                                                                         "oklch(72% 0.01808 240.03)",
+                                                                         "oklch(84% 0.01808 240.03)",
+                                                                         "oklch(95% 0.01808 240.03)"
+                                                                     ],
+                                                       "role":  "neutral"
+                                                   },
+                                         "ring":  {
+                                                      "displayName":  "ring",
+                                                      "tonalRamp":  [
+                                                                        "oklch(15% 0.08647 190.70)",
+                                                                        "oklch(26% 0.08647 190.70)",
+                                                                        "oklch(38% 0.08647 190.70)",
+                                                                        "oklch(49% 0.08647 190.70)",
+                                                                        "oklch(61% 0.08647 190.70)",
+                                                                        "oklch(72% 0.08647 190.70)",
+                                                                        "oklch(84% 0.08647 190.70)",
+                                                                        "oklch(95% 0.08647 190.70)"
+                                                                    ],
+                                                      "role":  "neutral"
+                                                  },
+                                         "destructive":  {
+                                                             "displayName":  "destructive",
+                                                             "tonalRamp":  [
+                                                                               "oklch(15% 0.17411 24.29)",
+                                                                               "oklch(26% 0.17411 24.29)",
+                                                                               "oklch(38% 0.17411 24.29)",
+                                                                               "oklch(49% 0.17411 24.29)",
+                                                                               "oklch(61% 0.17411 24.29)",
+                                                                               "oklch(72% 0.17411 24.29)",
+                                                                               "oklch(84% 0.17411 24.29)",
+                                                                               "oklch(95% 0.17411 24.29)"
+                                                                           ],
+                                                             "role":  "neutral"
+                                                         }
+                                     },
+                       "tonalRampNote":  "Exploratory OKLCH ramps derived from exact frontmatter hues, not replacement implementation tokens.",
+                       "breakpoints":  [
+                                           {
+                                               "value":  "767px",
+                                               "name":  "mobile-max"
+                                           },
+                                           {
+                                               "value":  "768px",
+                                               "name":  "tablet-min"
+                                           },
+                                           {
+                                               "value":  "1024px",
+                                               "name":  "catalog-three-columns"
+                                           },
+                                           {
+                                               "value":  "1280px",
+                                               "name":  "wide-desktop"
+                                           },
+                                           {
+                                               "value":  "1440px",
+                                               "name":  "header-calibration"
+                                           }
+                                       ]
+                   },
+    "components":  [
+                       {
+                           "name":  "Navy default",
+                           "description":  "Official shadcn variant, shown at its default size; page geometry may override size.",
+                           "css":  ".ds-button-default{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border:1px solid transparent;border-radius:8px;background:var(--primary,#003756);color:#ffffff;font:500 14px \"Plus Jakarta Sans\",sans-serif;cursor:pointer;transition:all 150ms;}.ds-button-default:hover{background:color-mix(in oklab,var(--primary,#003756) 80%,transparent);}.ds-button-default:focus-visible{border-color:var(--ring,#147b77);outline:3px solid color-mix(in oklab,var(--ring,#147b77) 50%,transparent);outline-offset:0;}.ds-button-default:active{transform:translateY(1px);}.ds-button-default:disabled{opacity:.5;pointer-events:none;}@media(prefers-reduced-motion:reduce){.ds-button-default{transition:none;}}",
+                           "kind":  "button",
+                           "refersTo":  "button-default",
+                           "html":  "\u003cbutton class=\"ds-button-default\"\u003eVer experiencia\u003c/button\u003e"
+                       },
+                       {
+                           "name":  "Coral action",
+                           "description":  "Official shadcn variant, shown at its default size; page geometry may override size.",
+                           "css":  ".ds-button-coral{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border:1px solid transparent;border-radius:8px;background:var(--color-tertiary-container,#921d02);color:#ffffff;font:700 14px \"Plus Jakarta Sans\",sans-serif;cursor:pointer;transition:all 150ms;}.ds-button-coral:hover{background:var(--color-tertiary,#6a1100);}.ds-button-coral:focus-visible{border-color:var(--ring,#147b77);outline:3px solid color-mix(in oklab,var(--ring,#147b77) 50%,transparent);outline-offset:0;}.ds-button-coral:active{transform:translateY(1px);}.ds-button-coral:disabled{opacity:.5;pointer-events:none;}@media(prefers-reduced-motion:reduce){.ds-button-coral{transition:none;}}",
+                           "kind":  "button",
+                           "refersTo":  "button-coral",
+                           "html":  "\u003cbutton class=\"ds-button-coral\"\u003ePreparar mensaje\u003c/button\u003e"
+                       },
+                       {
+                           "name":  "Mint action",
+                           "description":  "Official shadcn variant, shown at its default size; page geometry may override size.",
+                           "css":  ".ds-button-mint{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border:1px solid transparent;border-radius:8px;background:var(--color-secondary-container,#99f5ce);color:var(--color-on-secondary-fixed-variant,#00513b);font:600 14px \"Plus Jakarta Sans\",sans-serif;cursor:pointer;transition:all 150ms;}.ds-button-mint:hover{background:var(--secondary,#006c4f);color:#ffffff;}.ds-button-mint:focus-visible{border-color:var(--ring,#147b77);outline:3px solid color-mix(in oklab,var(--ring,#147b77) 50%,transparent);outline-offset:0;}.ds-button-mint:active{transform:translateY(1px);}.ds-button-mint:disabled{opacity:.5;pointer-events:none;}@media(prefers-reduced-motion:reduce){.ds-button-mint{transition:none;}}",
+                           "kind":  "button",
+                           "refersTo":  "button-mint",
+                           "html":  "\u003cbutton class=\"ds-button-mint\"\u003eVer experiencia\u003c/button\u003e"
+                       },
+                       {
+                           "name":  "Soft action",
+                           "description":  "Official shadcn variant, shown at its default size; page geometry may override size.",
+                           "css":  ".ds-button-soft{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border:1px solid transparent;border-radius:8px;background:var(--color-surface-container,#e7eeff);color:var(--primary,#003756);font:600 14px \"Plus Jakarta Sans\",sans-serif;cursor:pointer;transition:all 150ms;}.ds-button-soft:hover{background:var(--color-surface-container-high,#dee8ff);}.ds-button-soft:focus-visible{border-color:var(--ring,#147b77);outline:3px solid color-mix(in oklab,var(--ring,#147b77) 50%,transparent);outline-offset:0;}.ds-button-soft:active{transform:translateY(1px);}.ds-button-soft:disabled{opacity:.5;pointer-events:none;}@media(prefers-reduced-motion:reduce){.ds-button-soft{transition:none;}}",
+                           "kind":  "button",
+                           "refersTo":  "button-soft",
+                           "html":  "\u003cbutton class=\"ds-button-soft\"\u003eVer experiencia\u003c/button\u003e"
+                       },
+                       {
+                           "name":  "Chat action",
+                           "description":  "Official shadcn variant, shown at its default size; page geometry may override size.",
+                           "css":  ".ds-button-chat{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border:1px solid transparent;border-radius:9999px;background:var(--secondary,#006c4f);color:#ffffff;font:700 14px \"Plus Jakarta Sans\",sans-serif;cursor:pointer;transition:all 150ms;}.ds-button-chat:hover{background:color-mix(in oklab,var(--secondary,#006c4f) 90%,transparent);}.ds-button-chat:focus-visible{border-color:var(--ring,#147b77);outline:3px solid color-mix(in oklab,var(--ring,#147b77) 50%,transparent);outline-offset:0;}.ds-button-chat:active{transform:translateY(1px);}.ds-button-chat:disabled{opacity:.5;pointer-events:none;}@media(prefers-reduced-motion:reduce){.ds-button-chat{transition:none;}}",
+                           "kind":  "button",
+                           "refersTo":  "button-chat",
+                           "html":  "\u003cbutton class=\"ds-button-chat\"\u003eContactar\u003c/button\u003e"
+                       },
+                       {
+                           "name":  "Text field",
+                           "description":  "Default shadcn field; page-specific fills are documented separately.",
+                           "css":  ".ds-input{height:44px;width:100%;min-width:0;padding:4px 10px;border:1px solid var(--input,#c7d3dc);border-radius:8px;background:transparent;color:var(--foreground,#111c2d);font:400 16px \"Plus Jakarta Sans\",sans-serif;transition:border-color 150ms;}.ds-input::placeholder{color:var(--muted-foreground,#41474e);}.ds-input:focus-visible{border-color:var(--ring,#147b77);outline:3px solid color-mix(in oklab,var(--ring,#147b77) 50%,transparent);outline-offset:0;}.ds-input[aria-invalid=true]{border-color:var(--destructive,#a91d26);}.ds-input:disabled{opacity:.5;background:color-mix(in oklab,var(--input,#c7d3dc) 50%,transparent);}@media(min-width:768px){.ds-input{font-size:14px;}}@media(prefers-reduced-motion:reduce){.ds-input{transition:none;}}",
+                           "kind":  "input",
+                           "refersTo":  "input",
+                           "html":  "\u003cinput class=\"ds-input\" aria-label=\"Nombre\" placeholder=\"Nombre\" /\u003e"
+                       },
+                       {
+                           "name":  "Desktop navigation",
+                           "description":  "Desktop specimen: rounded ocean-panel selection and pale text, without the superseded underline.",
+                           "css":  ".ds-nav{display:flex;align-items:center;gap:2px;font:700 12px/20px \"Plus Jakarta Sans\",sans-serif;}.ds-nav a{padding:8px 10px;border-radius:8px;color:var(--muted-foreground,#41474e);text-decoration:none;}.ds-nav a[aria-current=page]{background:var(--color-primary-container,#0e4f75);color:var(--color-primary-fixed,#cbe6ff);}.ds-nav a:hover{background:var(--color-surface-container,#e7eeff);color:var(--primary,#003756);}.ds-nav a:focus-visible{outline:3px solid var(--ring,#147b77);outline-offset:4px;}@media(min-width:1280px) and (max-width:1439px){.ds-nav a{font-size:11px;padding-inline:8px;}}",
+                           "kind":  "nav",
+                           "refersTo":  "desktop-navigation-active",
+                           "html":  "\u003cnav class=\"ds-nav\" aria-label=\"Principal\"\u003e\u003ca href=\"#inicio\"\u003eInicio\u003c/a\u003e\u003ca href=\"#tours\" aria-current=\"page\"\u003eTours y Actividades\u003c/a\u003e\u003ca href=\"#contacto\"\u003eContacto\u003c/a\u003e\u003c/nav\u003e"
+                       },
+                       {
+                           "name":  "Destination filter",
+                           "description":  "Navy selected location pill; activity filters use their separate green state.",
+                           "css":  ".ds-destination{height:40px;padding:8px 16px;border:0;border-radius:9999px;background:var(--color-surface-container-high,#dee8ff);color:var(--foreground,#111c2d);font:700 14px/20px \"Plus Jakarta Sans\",sans-serif;cursor:pointer;}.ds-destination[aria-pressed=true]{background:var(--primary,#003756);color:#ffffff;}.ds-destination:hover{filter:brightness(.96);}.ds-destination:focus-visible{outline:3px solid var(--ring,#147b77);outline-offset:4px;}",
+                           "kind":  "chip",
+                           "refersTo":  "destination-chip-selected",
+                           "html":  "\u003cbutton class=\"ds-destination\" aria-pressed=\"true\"\u003ePaquera\u003c/button\u003e"
+                       },
+                       {
+                           "name":  "Catalogue card body",
+                           "description":  "Body/footer specimen only; live photography, badges and services are provided by TourCard and its media role.",
+                           "css":  ".ds-catalog-card{overflow:hidden;border:0;border-radius:12px;background:#ffffff;box-shadow:0 1px 3px rgb(0 0 0 / .1);font:400 13px/20px \"Plus Jakarta Sans\",sans-serif;transition:box-shadow .3s ease;}.ds-catalog-card:hover{box-shadow:0 10px 24px rgb(0 30 49 / .12);}.ds-catalog-card-copy{padding:20px 20px 0;}.ds-catalog-card h3{font:600 16px/24px \"Plus Jakarta Sans\",sans-serif;color:var(--primary,#003756);}.ds-catalog-card p{color:var(--muted-foreground,#41474e);}.ds-catalog-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px;background:var(--color-surface-container-low,#f0f3ff);}.ds-catalog-card strong{font:700 15px/28px \"Montserrat\",sans-serif;color:var(--color-tertiary-container,#921d02);}.ds-catalog-card a{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:8px 10px;border-radius:8px;background:var(--primary,#003756);color:#ffffff;font:500 11px/20px \"Plus Jakarta Sans\",sans-serif;text-decoration:none;}.ds-catalog-card a:hover{filter:brightness(.9);}.ds-catalog-card a:focus-visible{outline:3px solid var(--ring,#147b77);outline-offset:4px;}@media(prefers-reduced-motion:reduce){.ds-catalog-card{transition:none;}}",
+                           "kind":  "card",
+                           "refersTo":  "catalog-card",
+                           "html":  "\u003carticle class=\"ds-catalog-card\"\u003e\u003cdiv class=\"ds-catalog-card-copy\"\u003e\u003cp\u003ePaquera\u003c/p\u003e\u003ch3\u003eBioluminiscencia en Paquera\u003c/h3\u003e\u003cp\u003eDescubre el mar de Paquera desde otra perspectiva.\u003c/p\u003e\u003c/div\u003e\u003cdiv class=\"ds-catalog-card-footer\"\u003e\u003cstrong\u003eConsultar precio\u003c/strong\u003e\u003ca href=\"#detalle\"\u003eVer detalles\u003c/a\u003e\u003c/div\u003e\u003c/article\u003e"
+                       },
+                       {
+                           "name":  "Home card body",
+                           "description":  "Body/footer specimen only; live photography, badges and services are provided by TourCard and its media role.",
+                           "css":  ".ds-home-card{overflow:hidden;border:0;border-radius:12px;background:#ffffff;box-shadow:0 1px 3px rgb(0 0 0 / .1);font:400 13px/20px \"Plus Jakarta Sans\",sans-serif;transition:box-shadow .3s ease;}.ds-home-card:hover{box-shadow:0 10px 24px rgb(0 30 49 / .12);}.ds-home-card-copy{padding:24px 24px 0;}.ds-home-card h3{font:600 20px/28px \"Montserrat\",sans-serif;color:var(--primary,#003756);}.ds-home-card p{color:var(--muted-foreground,#41474e);}.ds-home-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:24px;background:#ffffff;}.ds-home-card strong{font:700 15px/28px \"Montserrat\",sans-serif;color:var(--color-tertiary-container,#921d02);}.ds-home-card a{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:8px 10px;border-radius:8px;background:var(--secondary,#006c4f);color:#ffffff;font:500 11px/20px \"Plus Jakarta Sans\",sans-serif;text-decoration:none;}.ds-home-card a:hover{filter:brightness(.9);}.ds-home-card a:focus-visible{outline:3px solid var(--ring,#147b77);outline-offset:4px;}@media(prefers-reduced-motion:reduce){.ds-home-card{transition:none;}}",
+                           "kind":  "card",
+                           "refersTo":  "home-card",
+                           "html":  "\u003carticle class=\"ds-home-card\"\u003e\u003cdiv class=\"ds-home-card-copy\"\u003e\u003cp\u003ePaquera\u003c/p\u003e\u003ch3\u003eBioluminiscencia en Paquera\u003c/h3\u003e\u003cp\u003eDescubre el mar de Paquera desde otra perspectiva.\u003c/p\u003e\u003c/div\u003e\u003cdiv class=\"ds-home-card-footer\"\u003e\u003cstrong\u003eConsultar precio\u003c/strong\u003e\u003ca href=\"#detalle\"\u003eCotizar\u003c/a\u003e\u003c/div\u003e\u003c/article\u003e"
+                       }
+                   ],
+    "narrative":  {
+                      "donts":  [
+                                    "Don\u0027t let prior DESIGN.md claims, earlier screenshots or a previous approval override the user\u0027s literal-Stitch instruction.",
+                                    "Don\u0027t replace source geometry, shadows, mobile composition or icon treatment with a new aesthetic preference.",
+                                    "Don\u0027t present mockup reviews, ratings, certifications, payment claims, capacity, weather, exchange rates or sample contact information as verified facts.",
+                                    "Don\u0027t add bookings or payments to reproduce a source label."
+                                ],
+                      "dos":  [
+                                  "Do treat the seven saved Stitch HTML/image pairs as the authority for desktop and mobile composition.",
+                                  "Do preserve exact navy, mint, coral, font, icon and surface roles from the source.",
+                                  "Do preserve separate home/catalogue card variants and the positional media convention.",
+                                  "Do retain semantic controls, keyboard focus, reduced-motion behavior and truthful content.",
+                                  "Do compare refreshed captures at the reference widths before asserting visual parity."
+                              ],
+                      "keyCharacteristics":  [
+                                                 "Source-specific desktop and mobile compositions, not a uniform stacked desktop layout.",
+                                                 "Navy headings, mint accents, coral actions and prices, and lavender surface layers.",
+                                                 "Montserrat headings, declared Plus Jakarta Sans body text and locally served Material Symbols.",
+                                                 "Distinct home, catalogue and detail photographs selected by the documented media order."
+                                             ],
+                      "rules":  [
+
+                                ],
+                      "overview":  "The user\u0027s instruction is binding: **“Las interfaces deben seguir al pie de la letra los diseños de Stitch.”** Stitch project `4366171717337285856` and its saved source HTML and full-resolution images in `front/desing/stitch` are the visual authority. This refresh supersedes the earlier visual interpretation and its approval. Preserve the source compositions, palette, hierarchy, geometry, imagery roles and responsive differences; do not redesign them to suit generic design preferences.\n\nThe seven screen references are desktop home `9c2671ea77f1488ba46ab3410d54d3ab`, catalogue `61d46cf5d8c548d081dad5101cd27de6`, detail `cea7a57b40944a608fd7abf54e5a32ba`, administration `ce1dcd1953be4a37aad150307919c9af`, mobile home `de3538226ad6447f9d9c84a0d3cda6f1`, mobile catalogue `aad1dd39ddc243f79879de0debcdbb44`, and mobile detail `ef6bb58f6d2c4e40b2208e3e51c6a4c1`. The adjacent `2f9307579ab045a2bd481091a009e697` asset is the brand reference."
+                  }
+}

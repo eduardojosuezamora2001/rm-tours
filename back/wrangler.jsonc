@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rm-tours-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-13",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "observability": {
+    "enabled": true,
+    "traces": {
+      "enabled": true
+    }
+  },
+  "vars": {
+    "SUPABASE_URL": "https://kcddorduapjhjsiyclrm.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_EJB7l-91PMksRyxOyvSdKA_wqna8VHJ",
+    "ALLOWED_ORIGINS": "http://localhost:5173"
+  }
+}
