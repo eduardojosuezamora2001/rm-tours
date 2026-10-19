@@ -5,6 +5,12 @@ test('owner manages bilingual tour, plans, sections, preview, settings and legal
   page,
 }, testInfo) => {
   test.setTimeout(180000)
+  const openNavigation = async () => {
+    if (testInfo.project.name === 'mobile') {
+      await page.getByRole('button', { name: 'Abrir menú', exact: true }).click()
+      await expect(page.getByRole('navigation', { name: 'Gestión' })).toBeVisible()
+    }
+  }
   const tours = structuredClone(testTours)
   let settings = {
     whatsapp: '',
@@ -57,6 +63,7 @@ test('owner manages bilingual tour, plans, sections, preview, settings and legal
       expect(request.headers()['authorization']).toBeUndefined()
       return route.fulfill({ json: { id: user.id } })
     }
+    if (path === '/admin/media-optimization') return route.fulfill({ json: [] })
     if (path === '/admin/uploads') {
       const id = '77777777-7777-4777-8777-777777777777'
       return route.fulfill({
@@ -125,7 +132,74 @@ test('owner manages bilingual tour, plans, sections, preview, settings and legal
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
   )
+  await page.getByRole('button', { name: 'Cambiar tema', exact: true }).click()
+  await page.screenshot({
+    path: `../.impeccable/review/admin-list-dark-${testInfo.project.name}.png`,
+    fullPage: true,
+  })
+  if (testInfo.project.name === 'mobile') {
+    await expect(page.getByRole('navigation', { name: 'Gestión' })).not.toBeVisible()
+    await openNavigation()
+    await expect(page.getByRole('link', { name: 'Páginas legales', exact: true })).toBeVisible()
+    await page.screenshot({ path: '../.impeccable/review/admin-sidebar-mobile.png' })
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('button', { name: 'Abrir menú', exact: true })).toBeFocused()
+  } else {
+    await page.getByRole('button', { name: 'Abrir menú', exact: true }).click()
+    await expect(page.locator('[data-collapsible="icon"]')).toBeVisible()
+    await expect
+      .poll(
+        async () => (await page.locator('[data-slot="sidebar-container"]').boundingBox())?.width,
+      )
+      .toBe(48)
+    await page.screenshot({ path: '../.impeccable/review/admin-sidebar-collapsed-desktop.png' })
+    await page.getByRole('button', { name: 'Administración', exact: true }).click()
+    await expect(page.getByRole('menuitem', { name: 'Cerrar sesión' })).toBeVisible()
+    await page.keyboard.press('Escape')
+    await page.getByRole('button', { name: 'Abrir menú', exact: true }).click()
+  }
+  await page.getByRole('button', { name: 'Cambiar tema', exact: true }).click()
   await page.getByRole('link', { name: 'Editar', exact: true }).first().click()
+  await expect(page).toHaveURL(new RegExp(`/admin-tours/tours/${testTours[0].id}$`))
+  await page.reload()
+  await expect(page.locator('#tour-duration')).toHaveValue(String(testTours[0].duration_minutes))
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await expect(page.locator('[data-slot="sidebar"]')).toHaveCount(0)
+  await expect(page.locator('.admin-tour-list')).toHaveCount(0)
+  expect(
+    await page
+      .locator('.stitch-tour-editor')
+      .evaluate((element) => element.getBoundingClientRect().width >= window.innerWidth - 64),
+  ).toBe(true)
+  await page.getByRole('tab', { name: 'Fotografías', exact: true }).click()
+  const cover = page.locator('.media-editor-cover')
+  await expect(cover).toHaveCount(1)
+  await expect(cover).toHaveCSS('border-top-width', '2px')
+  await expect(cover.getByRole('status')).toContainText('Esta imagen se utilizará como portada')
+  await cover
+    .getByRole('status')
+    .evaluate((element) => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
+  await page.screenshot({
+    path: `../.impeccable/review/admin-cover-warning-light-${testInfo.project.name}.png`,
+    animations: 'disabled',
+  })
+  await page.getByRole('button', { name: 'Cambiar tema', exact: true }).click()
+  await cover
+    .getByRole('status')
+    .evaluate((element) => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
+  await page.screenshot({
+    path: `../.impeccable/review/admin-cover-warning-dark-${testInfo.project.name}.png`,
+    animations: 'disabled',
+  })
+  await page.getByRole('button', { name: 'Cambiar tema', exact: true }).click()
+  await cover.getByRole('button', { name: 'Bajar', exact: true }).click()
+  await expect(cover.locator('img')).toHaveAttribute('src', testTours[0].media[1].url!)
+  await page
+    .locator('.media-editor')
+    .nth(1)
+    .getByRole('button', { name: 'Subir', exact: true })
+    .click()
+  await expect(cover.locator('img')).toHaveAttribute('src', testTours[0].media[0].url!)
   await page.getByRole('tab', { name: 'Planes', exact: true }).click()
   await page.getByRole('button', { name: 'Agregar plan' }).click()
   await expect(page.locator('.editor-panel')).toHaveCount(2)
@@ -147,7 +221,7 @@ test('owner manages bilingual tour, plans, sections, preview, settings and legal
     .click()
   await page.getByRole('alertdialog').getByRole('button', { name: 'Eliminar', exact: true }).click()
   await expect(page.locator('.editor-panel')).toHaveCount(testTours[0].sections.length)
-  await page.getByRole('link', { name: 'Cerrar', exact: true }).click()
+  await page.getByRole('link', { name: 'Volver al catálogo', exact: true }).click()
   await expect(page.getByRole('alertdialog', { name: 'Cambios sin guardar' })).toBeVisible()
   await page.getByRole('alertdialog').getByRole('button', { name: 'Cancelar', exact: true }).click()
   await expect(page.getByRole('tab', { name: 'Secciones', exact: true })).toBeVisible()
@@ -157,7 +231,7 @@ test('owner manages bilingual tour, plans, sections, preview, settings and legal
   await page.getByRole('button', { name: 'Guardar cambios' }).click()
   await expect(page.getByText('Cambios guardados', { exact: true })).toBeVisible()
   await page.locator('#tour-duration').fill('123')
-  await page.getByRole('link', { name: 'Cerrar', exact: true }).click()
+  await page.getByRole('link', { name: 'Volver al catálogo', exact: true }).click()
   await page
     .getByRole('alertdialog')
     .getByRole('button', { name: 'Descartar y salir', exact: true })
@@ -171,15 +245,34 @@ test('owner manages bilingual tour, plans, sections, preview, settings and legal
     path: `../.impeccable/review/admin-preview-${testInfo.project.name}.png`,
     fullPage: true,
   })
-  await page.getByRole('link', { name: 'Contacto y sitio', exact: true }).click()
+  await openNavigation()
+  await page
+    .getByRole('navigation', { name: 'Gestión' })
+    .getByRole('link', { name: 'Contacto y sitio', exact: true })
+    .click()
   await page.locator('#settings-whatsapp').fill('50688880000')
   await page.getByRole('button', { name: 'Guardar cambios' }).click()
   await expect.poll(() => settings.whatsapp).toBe('50688880000')
-  await page.getByRole('link', { name: 'Páginas legales', exact: true }).click()
+  await openNavigation()
+  await page
+    .getByRole('navigation', { name: 'Gestión' })
+    .getByRole('link', { name: 'Páginas legales', exact: true })
+    .click()
   await expect(page.getByRole('heading', { name: 'Privacidad', exact: true })).toBeVisible()
   const privacy = page
     .locator('form')
     .filter({ has: page.getByRole('heading', { name: 'Privacidad', exact: true }) })
+  await expect(privacy.getByLabel('Contenido · ES')).toHaveValue(/Responsable y contacto/)
+  await expect(privacy.getByLabel('Contenido · EN')).toHaveValue(/Controller and contact/)
+  await expect(privacy.getByRole('checkbox')).toBeDisabled()
+  await privacy.getByRole('button', { name: 'Guardar cambios' }).click()
+  await expect.poll(() => legal[0].body.es).toContain('[DOMICILIO]')
+  expect(legal[0].published).toBe(false)
+  const terms = page
+    .locator('form')
+    .filter({ has: page.getByRole('heading', { name: 'Términos y condiciones', exact: true }) })
+  await expect(terms.getByLabel('Contenido · ES')).toHaveValue(/Cancelaciones|cancelaciones/)
+  await expect(terms.getByRole('checkbox')).toBeDisabled()
   await privacy.getByLabel('Título de sección · ES').fill('Privacidad')
   await privacy.getByLabel('Título de sección · EN').fill('Privacy')
   await privacy.getByLabel('Contenido · ES').fill('Documento de prueba.')
@@ -188,8 +281,18 @@ test('owner manages bilingual tour, plans, sections, preview, settings and legal
   await privacy.getByRole('button', { name: 'Guardar cambios' }).click()
   await expect.poll(() => legal[0].published).toBe(true)
 
-  await page.getByRole('link', { name: 'Catálogo & Precios', exact: true }).click()
-  await page.getByRole('link', { name: 'Crear tour', exact: true }).click()
+  await openNavigation()
+  await page
+    .getByRole('navigation', { name: 'Gestión' })
+    .getByRole('link', { name: 'Catálogo & Precios', exact: true })
+    .click()
+  await page
+    .locator('.admin-workspace-content')
+    .getByRole('link', { name: 'Crear tour', exact: true })
+    .click()
+  await expect(page).toHaveURL(/\/admin-tours\/tours\/new$/)
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await expect(page.locator('[data-slot="sidebar"]')).toHaveCount(0)
   await page.getByLabel('Nombre · ES', { exact: true }).fill('Tour de prueba')
   await page.getByLabel('Nombre · EN', { exact: true }).fill('Test tour')
   await page.getByLabel('Resumen · ES').fill('Experiencia de prueba')
@@ -197,8 +300,13 @@ test('owner manages bilingual tour, plans, sections, preview, settings and legal
   await page.locator('#tour-slug').fill('tour-de-prueba')
   await page.getByLabel('Punto de encuentro · ES').fill('Paquera')
   await page.getByLabel('Punto de encuentro · EN').fill('Paquera')
+  await page.getByRole('button', { name: 'Cambiar tema', exact: true }).click()
+  await expect(page.locator('html')).toHaveClass(/dark/)
+  await expect(page.getByLabel('Nombre · ES', { exact: true })).toHaveValue('Tour de prueba')
+  await expect(page).toHaveURL(/\/admin-tours\/tours\/new$/)
+  await page.getByRole('button', { name: 'Cambiar tema', exact: true }).click()
   await page.evaluate(() => {
-    document.querySelector('.stitch-editor-drawer')?.scrollTo({ top: 0, behavior: 'instant' })
+    window.scrollTo({ top: 0, behavior: 'instant' })
     ;(document.activeElement as HTMLElement)?.blur()
   })
   await page.mouse.move(0, 0)
@@ -228,17 +336,25 @@ test('owner manages bilingual tour, plans, sections, preview, settings and legal
   ).toBeVisible()
   await page.locator('#image-upload').setInputFiles('../shared/testing/tour.jpg')
   await expect(page.getByLabel('Descripción accesible · ES')).toBeVisible()
+  await expect(page.getByText('Portada (primera imagen)', { exact: true })).toBeVisible()
+  await expect(page.getByText(/La primera imagen será utilizada como portada/)).toBeVisible()
   await page.getByLabel('Descripción accesible · ES').fill('Playa de prueba')
   await page.getByLabel('Descripción accesible · EN').fill('Test beach')
   await page.getByRole('button', { name: 'Guardar cambios' }).click()
   await expect.poll(() => tours.find((t) => t.slug === 'tour-de-prueba')?.status).toBe('published')
-  await page.getByRole('link', { name: 'Cerrar', exact: true }).click()
-  await page.getByRole('link', { name: 'Catálogo & Precios', exact: true }).click()
+  await page.getByRole('link', { name: 'Volver al catálogo', exact: true }).click()
+  await openNavigation()
+  await page
+    .getByRole('navigation', { name: 'Gestión' })
+    .getByRole('link', { name: 'Catálogo & Precios', exact: true })
+    .click()
   const created = page.locator('.admin-tour-list article').filter({ hasText: 'Tour de prueba' })
   await created.getByRole('button', { name: 'Eliminar', exact: true }).click()
   await page.getByRole('alertdialog').getByRole('button', { name: 'Eliminar', exact: true }).click()
   await expect(created).toHaveCount(0)
-  await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).click()
+  await openNavigation()
+  await page.getByRole('button', { name: 'Administración', exact: true }).click()
+  await page.getByRole('menuitem', { name: 'Cerrar sesión', exact: true }).click()
   await expect(page).toHaveURL(/\/admin-tours\/login$/)
   await page.getByRole('link', { name: 'Recuperar contraseña' }).click()
   await page.locator('#auth-email').fill('owner@example.com')

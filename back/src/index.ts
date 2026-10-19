@@ -42,7 +42,8 @@ app.use(
 app.use(
   '/api/*',
   bodyLimit({
-    maxSize: 6 * 1024 * 1024,
+    // Main image (5 MB), thumbnail (1 MB), and multipart headers.
+    maxSize: 7 * 1024 * 1024,
     onError: (c) => c.json({ error: { code: 'BODY_TOO_LARGE' } }, 413),
   }),
 )

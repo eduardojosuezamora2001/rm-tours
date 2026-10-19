@@ -9,9 +9,12 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { ErrorState, Loading } from '@/components/feedback'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { pendingLegalDetails, withLegalDraft } from './legal-drafts'
 function DocumentForm({ initial }: { initial: LegalPage }) {
   const { t } = useTranslation('admin', { lng: 'es' })
-  const [page, setPage] = useState(initial)
+  const [page, setPage] = useState(() => withLegalDraft(initial))
+  const pending = pendingLegalDetails(page)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<unknown>(null)
   const client = useQueryClient()
@@ -20,6 +23,7 @@ function DocumentForm({ initial }: { initial: LegalPage }) {
       className="editor-panel"
       onSubmit={async (e) => {
         e.preventDefault()
+        if (page.published && pending.length > 0) return
         setBusy(true)
         setError(null)
         try {
@@ -28,7 +32,10 @@ function DocumentForm({ initial }: { initial: LegalPage }) {
             { method: 'PUT', body: JSON.stringify(page) },
             true,
           )
-          await client.invalidateQueries({ queryKey: ['legal'] })
+          await Promise.all([
+            client.invalidateQueries({ queryKey: ['admin-legal'] }),
+            client.invalidateQueries({ queryKey: ['legal'] }),
+          ])
           toast.success(t('saved'))
         } catch (err) {
           setError(err)
@@ -39,9 +46,18 @@ function DocumentForm({ initial }: { initial: LegalPage }) {
     >
       <div className="editor-panel-heading">
         <h2>{t(page.slug)}</h2>
-        <Button disabled={busy}>{t('save')}</Button>
+        <Button disabled={busy || (page.published && pending.length > 0)}>{t('save')}</Button>
       </div>
       {error !== null && <ErrorState error={error} />}
+      {pending.length > 0 && (
+        <Alert>
+          <AlertTitle>{t('legalDraftTitle')}</AlertTitle>
+          <AlertDescription>
+            <p>{t('legalDraftBody')}</p>
+            <p className="break-words">{pending.join(', ')}</p>
+          </AlertDescription>
+        </Alert>
+      )}
       <FieldGroup>
         <BilingualField
           label={t('sectionTitle')}
@@ -58,6 +74,7 @@ function DocumentForm({ initial }: { initial: LegalPage }) {
           <Checkbox
             id={`publish-${page.slug}`}
             checked={page.published}
+            disabled={pending.length > 0 && !page.published}
             onCheckedChange={(value) => setPage({ ...page, published: value === true })}
           />
           <FieldLabel htmlFor={`publish-${page.slug}`}>{t('published')}</FieldLabel>
@@ -83,9 +100,15 @@ export default function LegalEditor() {
         <ErrorState error={query.error} retry={() => void query.refetch()} />
       ) : (
         <div className="editor-stack">
-          {query.data.map((page) => (
-            <DocumentForm key={page.slug} initial={page} />
-          ))}
+          {(['privacy', 'terms'] as const).map((slug) => {
+            const page = query.data.find((item) => item.slug === slug) ?? {
+              slug,
+              title: { es: '', en: '' },
+              body: { es: '', en: '' },
+              published: false,
+            }
+            return <DocumentForm key={slug} initial={page} />
+          })}
         </div>
       )}
     </>

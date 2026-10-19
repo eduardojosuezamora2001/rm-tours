@@ -16,8 +16,13 @@ test('detail enquiry preserves its plan and personal data when changing language
     fullPage: true,
   })
   await page.locator('#quote-name').fill('Consulta en memoria')
+  await expect(page.locator('#quote-nationality')).toHaveCount(0)
+  await page.locator('#quote-participant-0-name').fill('Viajera de prueba')
+  await page.locator('#quote-participant-0-age').fill('28')
   await chooseSelect(page.getByRole('combobox', { name: 'Cambiar idioma', exact: true }), 'EN')
   await expect(page.locator('#quote-name')).toHaveValue('Consulta en memoria')
+  await expect(page.locator('#quote-participant-0-name')).toHaveValue('Viajera de prueba')
+  await expect(page.locator('#quote-participant-0-age')).toHaveValue('28')
   await expect(page.locator('#quote-plan')).toHaveText('General')
   await expect(page).toHaveURL(new RegExp(`/en/tours/bioluminiscencia-paquera\\?plan=${plan}`))
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
@@ -70,16 +75,44 @@ test('quote retains personal data when switching language and prepares a message
   await page.locator('#quote-phone').fill('+50688880000')
   await page.locator('#quote-email').fill('test@example.com')
   await page.locator('#quote-date').fill('2099-10-15')
-  await page.locator('#quote-nationality').fill('Costa Rica')
+  await expect(page.locator('#quote-nationality')).toHaveCount(0)
+  await page.locator('#quote-participant-0-name').fill('Ana Prueba')
+  await page.locator('#quote-participant-0-age').fill('32')
+  await page.getByRole('button', { name: 'Aumentar Adultos', exact: true }).click()
+  await page.locator('#quote-participant-1-name').fill('José Prueba')
+  await page.locator('#quote-participant-1-age').fill('34')
+  await page.locator('#quote-children').fill('1')
+  await page.locator('#quote-participant-2-name').fill('Bebé Prueba')
+  await page.locator('#quote-participant-2-age').fill('0')
+  await page.getByRole('button', { name: 'Aumentar Niños', exact: true }).click()
+  await expect(page.locator('[data-participant]')).toHaveCount(4)
+  await page.locator('#quote-participant-3-name').fill('Persona retirada')
+  await page.locator('#quote-participant-3-age').fill('8')
+  await page.getByRole('button', { name: 'Disminuir Niños', exact: true }).click()
+  await expect(page.locator('[data-participant]')).toHaveCount(3)
+  await expect(page.locator('#quote-participant-1-name')).toHaveValue('José Prueba')
   await chooseSelect(page.getByRole('combobox', { name: 'Cambiar idioma', exact: true }), 'EN')
   await expect(page.locator('#quote-name')).toHaveValue('Ana Prueba')
   await expect(page.locator('#quote-email')).toHaveValue('test@example.com')
+  await expect(page.locator('#quote-participant-2-name')).toHaveValue('Bebé Prueba')
+  await expect(page.locator('#quote-participant-2-age')).toHaveValue('0')
   await page.locator('#quote-consent').check()
+  await page.locator('#quote-participant-2-age').fill('')
+  await page.getByRole('button', { name: 'Prepare request' }).click()
+  await expect(page.locator('#quote-participant-2-age')).toHaveAttribute('aria-invalid', 'true')
+  await expect(page.getByText('Enter an age in whole years between 0 and 120.')).toBeVisible()
+  await expect(page.locator('.prepared-message')).toHaveCount(0)
+  await page.locator('#quote-participant-2-age').fill('0')
+  await expect(page.locator('#quote-participant-2-age')).toHaveAttribute('aria-invalid', 'false')
   await page.getByRole('button', { name: 'Prepare request' }).click()
   await expect(page.getByRole('heading', { name: 'Your request is ready' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Your request is ready' })).toBeFocused()
   await expect(page.getByRole('heading', { name: 'Your request is ready' })).toBeInViewport()
   await expect(page.locator('pre')).toContainText('Ana Prueba')
+  await expect(page.locator('pre')).toContainText('Participant 2: José Prueba — Age (years): 34')
+  await expect(page.locator('pre')).toContainText('Participant 3: Bebé Prueba — Age (years): 0')
+  await expect(page.locator('pre')).not.toContainText('Persona retirada')
+  await expect(page.locator('pre')).not.toContainText('Nationality')
   await expect(page.locator('pre')).toContainText('/en/tours/bioluminiscencia-paquera')
   await expect(page).not.toHaveURL(/Ana|test%40|2099/)
   expect(
@@ -99,6 +132,20 @@ test('quote retains personal data when switching language and prepares a message
     window.scrollTo({ top: 0, behavior: 'instant' })
   })
   await page.screenshot({ path: `${review}/quote-${testInfo.project.name}.png`, fullPage: true })
+  await page.locator('#quote-participant-1-age').fill('35')
+  await expect(page.locator('.prepared-message')).toHaveCount(0)
+  await page.getByRole('button', { name: 'Prepare request' }).click()
+  await expect(page.locator('pre')).toContainText('Participant 2: José Prueba — Age (years): 35')
+  await page.getByRole('button', { name: 'Change theme', exact: true }).click()
+  await expect(page.locator('html')).toHaveClass(/dark/)
+  await page.getByRole('group', { name: 'Trip participants', exact: true }).screenshot({
+    path: `${review}/quote-participants-dark-${testInfo.project.name}.png`,
+  })
+  const darkAccessibility = await new AxeBuilder({ page })
+    .include('form')
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+    .analyze()
+  expect(darkAccessibility.violations).toEqual([])
 })
 test('detail, gallery, direct English access and private administration entry', async ({
   page,
@@ -130,26 +177,57 @@ test('detail, gallery, direct English access and private administration entry', 
   await expect
     .poll(() =>
       page
-        .locator('.stitch-gallery-photo img')
+        .locator('.tour-gallery-main img')
         .first()
         .evaluate((image) => (image as HTMLImageElement).currentSrc),
     )
-    .toContain(testTours[0].media[testInfo.project.name === 'mobile' ? 5 : 2].url!)
+    .toContain(testTours[0].media[0].url!)
   await page.getByRole('button', { name: 'View photo 1' }).click()
-  await expect(
-    page.getByRole('dialog').getByText(testInfo.project.name === 'mobile' ? '4 / 4' : '1 / 4'),
-  ).toBeVisible()
+  await expect(page.getByRole('dialog').getByText('1 / 6')).toBeVisible()
   await page.getByRole('button', { name: 'Next', exact: true }).click()
-  await expect(
-    page.getByRole('dialog').getByText(testInfo.project.name === 'mobile' ? '1 / 4' : '2 / 4'),
-  ).toBeVisible()
+  await expect(page.getByRole('dialog').getByText('2 / 6')).toBeVisible()
   await page.keyboard.press('ArrowLeft')
-  await expect(
-    page.getByRole('dialog').getByText(testInfo.project.name === 'mobile' ? '4 / 4' : '1 / 4'),
-  ).toBeVisible()
+  await expect(page.getByRole('dialog').getByText('1 / 6')).toBeVisible()
   await page.keyboard.press('Escape')
   await page.goto('/admin-tours')
   await expect(page).toHaveURL(/\/admin-tours\/login$/)
   await expect(page.getByRole('heading', { name: 'Bienvenida a RM Tours' })).toBeVisible()
   await expect(page.getByText('Crear cuenta')).toHaveCount(0)
+})
+
+test('both photos remain available when a tour has only two images', async ({ page }, testInfo) => {
+  const tour = { ...testTours[0], media: testTours[0].media.slice(0, 2) }
+  await page.route(/\/api\/v1\/tours\/bioluminiscencia-paquera(?:\?|$)/, (route) =>
+    route.fulfill({ json: tour }),
+  )
+  await page.goto('/en/tours/bioluminiscencia-paquera')
+  await expect(page.locator('.tour-gallery-main')).toHaveCount(1)
+  await expect(page.locator('.tour-gallery-thumbnail')).toHaveCount(2)
+  await expect(page.locator('.tour-gallery-main img')).toHaveAttribute(
+    'src',
+    tour.media[0].url!,
+  )
+  await expect(page.locator('.tour-gallery-count')).toHaveText('1 / 2')
+  expect(await page.locator('.tour-gallery').evaluate((gallery) =>
+    Math.abs(gallery.getBoundingClientRect().width - gallery.querySelector('.tour-gallery-stage')!.getBoundingClientRect().width) < 1,
+  )).toBe(true)
+  await page.screenshot({ path: `${review}/detail-two-photos-${testInfo.project.name}.png` })
+  await page.getByRole('button', { name: 'View photo 1', exact: true }).click()
+  await expect(page.getByRole('dialog').getByText('1 / 2')).toBeVisible()
+  await page.getByRole('button', { name: 'Next', exact: true }).click()
+  await expect(page.getByRole('dialog').getByText('2 / 2')).toBeVisible()
+  await expect(page.getByRole('dialog').getByRole('img')).toHaveAttribute('src', tour.media[1].url!)
+  await page.keyboard.press('ArrowRight')
+  await expect(page.getByRole('dialog').getByText('1 / 2')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await page.getByRole('radio', { name: 'Show photo 2', exact: true }).click()
+  await expect(page.locator('.tour-gallery-main img')).toHaveAttribute('src', tour.media[1].url!)
+  await expect(page.locator('.tour-gallery-count')).toHaveText('2 / 2')
+  await expect(page.getByRole('radio', { name: 'Show photo 2', exact: true })).toHaveAttribute('aria-checked', 'true')
+  await page.getByRole('button', { name: 'View photo 2', exact: true }).click()
+  await expect(page.getByRole('dialog').getByText('2 / 2')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await page.locator('.tour-gallery').screenshot({ path: `${review}/gallery-thumbnails-${testInfo.project.name}-light.png`, animations: 'disabled' })
+  await page.getByRole('button', { name: 'Change theme', exact: true }).click()
+  await page.locator('.tour-gallery').screenshot({ path: `${review}/gallery-thumbnails-${testInfo.project.name}-dark.png`, animations: 'disabled' })
 })

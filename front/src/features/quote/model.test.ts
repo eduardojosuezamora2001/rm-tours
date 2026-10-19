@@ -5,6 +5,7 @@ import { calendarDate, money, todayDate, validDate } from '@/i18n/format'
 import { testTours } from '../../../../shared/testing/tours'
 beforeAll(async () => {
   await i18n.loadNamespaces('quote')
+  await i18n.loadLanguages('en')
 })
 describe('quotation and calendar dates', () => {
   it('preserves calendar dates independently of timezone', () => {
@@ -22,7 +23,7 @@ describe('quotation and calendar dates', () => {
       date: todayDate(),
       adults: 2,
       children: 0,
-      nationality: 'Costa Rica',
+      participants: [{ name: 'Ana', age: '32' }, { name: 'José', age: '34' }],
       schedule: '',
       notes: 'A & B?',
       consent: true,
@@ -35,6 +36,9 @@ describe('quotation and calendar dates', () => {
       { date: '2020-01-01' },
       { phone: 'abc' },
       { email: 'invalid' },
+      { participants: [] },
+      { participants: [{ name: 'Ana', age: '32' }] },
+      { participants: [{ name: ' ', age: '32' }, { name: 'José', age: '34' }] },
     ])
       expect(quoteSchema(t).safeParse({ ...valid, ...invalid }).success).toBe(false)
     const message = buildMessage(
@@ -46,9 +50,21 @@ describe('quotation and calendar dates', () => {
       'https://rmtours.example',
     )
     expect(message).toContain('Ana & José')
+    expect(message).toContain('Participant 1: Ana — Age (years): 32')
+    expect(message).toContain('Participant 2: José — Age (years): 34')
+    expect(message).not.toContain('Nationality')
     expect(message).toContain('/en/tours/bioluminiscencia-paquera')
     expect(new URL(whatsappUrl('50688880000', message)!).searchParams.get('text')).toBe(message)
     expect(whatsappUrl('', message)).toBeNull()
     expect(whatsappUrl('javascript:alert(1)', message)).toBeNull()
+  })
+  it('requires a whole age for every participant, including infants', () => {
+    const schema = quoteSchema(i18n.getFixedT('en', 'quote')).shape.participants
+    expect(schema.safeParse([{ name: 'Infant', age: '0' }]).success).toBe(true)
+    for (const age of ['', ' ', '-1', '1.5', '121', 'abc']) {
+      const result = schema.safeParse([{ name: 'Traveler', age }])
+      expect(result.success).toBe(false)
+      if (!result.success) expect(result.error.issues[0].message).toContain('whole years')
+    }
   })
 })

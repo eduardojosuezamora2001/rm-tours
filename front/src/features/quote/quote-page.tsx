@@ -2,7 +2,7 @@ import { EMPTY_SELECT_VALUE } from '@/lib/select-values'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, useFieldArray, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { parseAsString, useQueryStates } from 'nuqs'
 import { useQuery } from '@tanstack/react-query'
@@ -25,7 +25,15 @@ import {
 } from '@/components/ui/input-group'
 import { Textarea } from '@/components/ui/textarea'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Field, FieldGroup, FieldLabel, FieldError } from '@/components/ui/field'
+import {
+  Field,
+  FieldGroup,
+  FieldLabel,
+  FieldError,
+  FieldSet,
+  FieldLegend,
+  FieldDescription,
+} from '@/components/ui/field'
 import { SelectField } from '@/components/select-field'
 import { SelectItem } from '@/components/ui/select'
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
@@ -59,12 +67,33 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
       date: '',
       adults: 1,
       children: 0,
-      nationality: '',
+      participants: [{ name: '', age: '' }],
       schedule: '',
       notes: '',
       consent: false,
     },
   })
+  const { errors } = form.formState
+  const participants = useFieldArray({ control: form.control, name: 'participants' })
+  function changeCount(name: 'adults' | 'children', value: number) {
+    form.setValue(name, value, { shouldDirty: true, shouldValidate: form.formState.isSubmitted })
+    const { adults, children } = form.getValues()
+    if (
+      Number.isInteger(adults) && adults >= 1 && adults <= 99 &&
+      Number.isInteger(children) && children >= 0 && children <= 99
+    ) {
+      const total = adults + children
+      const current = form.getValues('participants').length
+      if (total > current) {
+        participants.append(Array.from({ length: total - current }, () => ({ name: '', age: '' })), {
+          shouldFocus: false,
+        })
+      } else if (total < current) {
+        participants.remove(Array.from({ length: current - total }, (_, index) => total + index))
+      }
+    }
+    setSubmitted(null)
+  }
   const {
     trigger,
     formState: { isSubmitted },
@@ -115,7 +144,6 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
     'schedule',
     'adults',
     'children',
-    'nationality',
   ] as const
   return (
     <div
@@ -212,7 +240,7 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
                     </Field>
                   ) : null
                 ) : (
-                  <Field key={name} data-field={name} data-invalid={!!form.formState.errors[name]}>
+                  <Field key={name} data-field={name} data-invalid={!!errors[name]}>
                     <FieldLabel htmlFor={`quote-${name}`}>{t(name)}</FieldLabel>
                     {name === 'adults' || name === 'children' ? (
                       <Controller
@@ -226,14 +254,15 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
                               min={name === 'adults' ? 1 : 0}
                               max={99}
                               autoComplete="off"
-                              aria-invalid={!!form.formState.errors[name]}
+                              aria-invalid={!!errors[name]}
                               aria-describedby={
-                                form.formState.errors[name] ? `error-${name}` : undefined
+                                errors[name] ? `error-${name}` : undefined
                               }
                               ref={field.ref}
+                              name={field.name}
                               value={Number.isFinite(field.value) ? field.value : ''}
                               onBlur={field.onBlur}
-                              onChange={(event) => field.onChange(event.target.valueAsNumber)}
+                              onChange={(event) => changeCount(name, event.target.valueAsNumber)}
                             />
                             <InputGroupAddon align="inline-start">
                               <InputGroupButton
@@ -242,10 +271,10 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
                                 aria-label={t('decrease', { field: t(name) })}
                                 disabled={field.value <= (name === 'adults' ? 1 : 0)}
                                 onClick={() => {
-                                  field.onChange(
+                                  changeCount(
+                                    name,
                                     Math.max(name === 'adults' ? 1 : 0, (field.value || 0) - 1),
                                   )
-                                  setSubmitted(null)
                                 }}
                               >
                                 <Minus />
@@ -258,8 +287,7 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
                                 aria-label={t('increase', { field: t(name) })}
                                 disabled={field.value >= 99}
                                 onClick={() => {
-                                  field.onChange(Math.min(99, (field.value || 0) + 1))
-                                  setSubmitted(null)
+                                  changeCount(name, Math.min(99, (field.value || 0) + 1))
                                 }}
                               >
                                 <Plus />
@@ -271,8 +299,8 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
                     ) : (
                       <Input
                         id={`quote-${name}`}
-                        aria-invalid={!!form.formState.errors[name]}
-                        aria-describedby={form.formState.errors[name] ? `error-${name}` : undefined}
+                        aria-invalid={!!errors[name]}
+                        aria-describedby={errors[name] ? `error-${name}` : undefined}
                         type={
                           name === 'email'
                             ? 'email'
@@ -295,15 +323,55 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
                         {...form.register(name)}
                       />
                     )}
-                    {form.formState.errors[name] && (
+                    {errors[name] && (
                       <FieldError id={`error-${name}`}>
-                        {form.formState.errors[name]?.message}
+                        {errors[name]?.message}
                       </FieldError>
                     )}
                   </Field>
                 ),
               )}
             </FieldGroup>
+            <FieldSet>
+              <FieldLegend>{t('participants')}</FieldLegend>
+              <FieldDescription>{t('participantsDescription')}</FieldDescription>
+              <FieldGroup>
+                {participants.fields.map((participant, index) => (
+                  <FieldSet key={participant.id} data-participant={index}>
+                    <FieldLegend variant="label">
+                      {t('participant', { number: index + 1 })}
+                    </FieldLegend>
+                    <FieldGroup className="form-grid">
+                      {(['name', 'age'] as const).map((name) => {
+                        const error = errors.participants?.[index]?.[name]
+                        const id = `quote-participant-${index}-${name}`
+                        return (
+                          <Field key={name} data-invalid={!!error}>
+                            <FieldLabel htmlFor={id}>{t(name)}</FieldLabel>
+                            <Input
+                              id={id}
+                              type={name === 'age' ? 'number' : 'text'}
+                              min={name === 'age' ? 0 : undefined}
+                              max={name === 'age' ? 120 : undefined}
+                              step={name === 'age' ? 1 : undefined}
+                              maxLength={name === 'name' ? 150 : undefined}
+                              autoComplete="off"
+                              aria-invalid={!!error}
+                              aria-describedby={error ? `${id}-error` : undefined}
+                              {...form.register(`participants.${index}.${name}`)}
+                            />
+                            {error && <FieldError id={`${id}-error`}>{error.message}</FieldError>}
+                          </Field>
+                        )
+                      })}
+                    </FieldGroup>
+                  </FieldSet>
+                ))}
+              </FieldGroup>
+              {errors.participants?.root && (
+                <FieldError>{errors.participants.root.message}</FieldError>
+              )}
+            </FieldSet>
             <Field>
               <FieldLabel htmlFor="quote-notes">{t('notes')}</FieldLabel>
               <Textarea id="quote-notes" rows={4} maxLength={1500} {...form.register('notes')} />
@@ -312,12 +380,12 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
               control={form.control}
               name="consent"
               render={({ field }) => (
-                <Field data-invalid={!!form.formState.errors.consent}>
+                <Field data-invalid={!!errors.consent}>
                   <div className="flex items-start gap-3">
                     <Checkbox
                       id="quote-consent"
                       checked={field.value}
-                      aria-invalid={!!form.formState.errors.consent}
+                      aria-invalid={!!errors.consent}
                       onCheckedChange={(value) => {
                         field.onChange(value === true)
                         setSubmitted(null)
@@ -328,8 +396,8 @@ export default function QuotePage({ embeddedTour }: { embeddedTour?: Tour } = {}
                   <Link className="text-sm underline" to={`/${lang}/privacidad`}>
                     {common('privacy')}
                   </Link>
-                  {form.formState.errors.consent && (
-                    <FieldError>{form.formState.errors.consent.message}</FieldError>
+                  {errors.consent && (
+                    <FieldError>{errors.consent.message}</FieldError>
                   )}
                 </Field>
               )}

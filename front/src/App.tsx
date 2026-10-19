@@ -107,18 +107,18 @@ const router = createBrowserRouter([
         lazy: async () => ({ Component: (await import('./features/admin/auth')).OwnerGuard }),
         children: [
           {
+            path: 'tours/:id',
+            lazy: async () => ({
+              Component: (await import('./features/admin/tour-editor')).default,
+            }),
+          },
+          {
             lazy: async () => ({ Component: (await import('./features/admin/layout')).default }),
             children: [
               {
                 index: true,
                 lazy: async () => ({
                   Component: (await import('./features/admin/tour-list')).default,
-                }),
-              },
-              {
-                path: 'tours/:id',
-                lazy: async () => ({
-                  Component: (await import('./features/admin/tour-editor')).default,
                 }),
               },
               {

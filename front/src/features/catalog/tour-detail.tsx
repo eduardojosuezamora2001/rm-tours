@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge'
 import { Alert, AlertTitle } from '@/components/ui/alert'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { StitchIcon } from '@/components/stitch-icon'
-import { useMobileViewport } from '@/hooks/use-mobile-viewport'
+import { TourGallery } from './tour-gallery'
 import {
   Card,
   CardHeader,
@@ -38,10 +38,9 @@ export function TourContent({ tour, preview = false }: { tour: Tour; preview?: b
   const { t: design } = useTranslation('catalog')
   const { t: common } = useTranslation()
   const lang = useLang()
-  const mobileViewport = useMobileViewport()
   const [photo, setPhoto] = useState<string | null>(null)
   const [, setPlan] = useQueryState('plan', parseAsString.withDefault(''))
-  const { gallery, mobileHero } = tourMedia(tour)
+  const { gallery } = tourMedia(tour)
   const sections = tour.sections.filter((section) => section.visible || preview)
   const viewerImages = [
     ...gallery,
@@ -123,58 +122,7 @@ export function TourContent({ tour, preview = false }: { tour: Tour; preview?: b
             {design('design.share')}
           </Button>
         </div>
-        <div className="stitch-detail-gallery">
-          {gallery.slice(0, 3).map((media, index) => (
-            <Button
-              type="button"
-              variant="media"
-              size="media"
-              key={media.id}
-              className="stitch-gallery-photo"
-              onClick={() =>
-                setPhoto(index === 0 && mobileViewport ? (mobileHero?.id ?? media.id) : media.id)
-              }
-              aria-label={t('image', { count: index + 1 })}
-            >
-              {media.url && (
-                <picture>
-                  {index === 0 && mobileHero?.url && (
-                    <source media="(max-width: 767px)" srcSet={mobileHero.url} />
-                  )}
-                  <img
-                    src={media.url}
-                    alt={
-                      index === 0 && mobileViewport
-                        ? (mobileHero?.alt[lang] ?? media.alt[lang])
-                        : media.alt[lang]
-                    }
-                    width="1000"
-                    height="650"
-                    loading={index ? 'lazy' : 'eager'}
-                    fetchPriority={index ? 'auto' : 'high'}
-                  />
-                </picture>
-              )}
-              {index === 0 && (
-                <span className="stitch-gallery-caption">
-                  <small>{common(`destinations.${tour.destination}`)}</small>
-                  <strong>
-                    {mobileViewport ? (mobileHero?.alt[lang] ?? media.alt[lang]) : media.alt[lang]}
-                  </strong>
-                </span>
-              )}
-              {index > 0 && media.alt[lang] && (
-                <span className="stitch-secondary-caption">{media.alt[lang]}</span>
-              )}
-              {index === 0 && (
-                <span className="stitch-gallery-count">
-                  <StitchIcon name="photo_camera" />
-                  {design('design.galleryCount', { count: gallery.length })}
-                </span>
-              )}
-            </Button>
-          ))}
-        </div>
+        <TourGallery key={tour.id} images={gallery} title={tour.name[lang]} lang={lang} onOpen={setPhoto} />
       </section>
       <div className="stitch-detail-body">
         <div className="stitch-container stitch-detail-columns">

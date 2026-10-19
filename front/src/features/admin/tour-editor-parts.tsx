@@ -1,7 +1,7 @@
 import { EMPTY_SELECT_VALUE } from '@/lib/select-values'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ArrowDown, ArrowUp, Plus, Trash2, Upload } from 'lucide-react'
+import { ArrowDown, ArrowUp, Plus, Trash2, TriangleAlert } from 'lucide-react'
 import {
   blankList,
   blankText,
@@ -12,16 +12,19 @@ import {
 } from '../../../../shared/contracts'
 import { BilingualField, ListField } from './fields'
 import { optimizeImage } from './image'
+import { ImageUpload } from './image-upload'
 import { request, ApiError } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Field, FieldGroup, FieldLabel, FieldDescription } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { SelectField } from '@/components/select-field'
 import { SelectItem } from '@/components/ui/select'
 import { ErrorState } from '@/components/feedback'
 import { ConfirmationDialog } from '@/components/confirmation-dialog'
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
+import { cn } from '@/lib/utils'
 function MoveButtons({
   index,
   count,
@@ -315,6 +318,7 @@ export function MediaEditor({
   onBusy: (busy: boolean) => void
 }) {
   const { t } = useTranslation('admin', { lng: 'es' })
+  const coverId = tour.media.find((media) => !media.section_id)?.id
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<unknown>(null)
   async function upload(file: File) {
@@ -324,9 +328,10 @@ export function MediaEditor({
     try {
       const optimized = await optimizeImage(file)
       const body = new FormData()
-      body.set('file', optimized)
+      body.set('file', optimized.main)
+      if (optimized.thumbnail) body.set('thumbnail', optimized.thumbnail)
       body.set('tourId', tour.id)
-      const media = await request<{ id: string; path: string; url: string }>(
+      const media = await request<{ id: string; path: string; url: string; thumbnail_url: string }>(
         '/admin/uploads',
         { method: 'POST', body },
         true,
@@ -347,46 +352,23 @@ export function MediaEditor({
   }
   return (
     <div className="editor-stack">
-      <Field>
-        <FieldLabel htmlFor="image-upload">
-          <Upload className="size-4" />
-          {busy ? t('uploading') : t('upload')}
-        </FieldLabel>
-        <Input
-          id="image-upload"
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          disabled={busy || tour.media.length >= 50}
-          onChange={(e) => {
-            const file = e.target.files?.[0]
-            if (file) void upload(file)
-            e.target.value = ''
-          }}
-        />
-        <FieldDescription>{t('uploadHelp')}</FieldDescription>
-        <FieldDescription>{t('mediaConvention')}</FieldDescription>
-      </Field>
+      <ImageUpload busy={busy} full={tour.media.length >= 50} onUpload={upload} />
       {error !== null && <ErrorState error={error} />}
       {tour.media.map((media, index) => (
-        <section key={media.id} className="editor-panel media-editor">
+        <section
+          key={media.id}
+          className={cn('editor-panel media-editor', media.id === coverId && 'media-editor-cover')}
+        >
           <img src={media.url} alt={media.alt.es} width="320" height="220" />
           <FieldGroup>
-            {!media.section_id && (
-              <Badge variant="outline">
-                {t(
-                  tour.media.filter((m) => !m.section_id).findIndex((m) => m.id === media.id) === 0
-                    ? 'catalogCover'
-                    : tour.media
-                          .filter((m) => !m.section_id)
-                          .findIndex((m) => m.id === media.id) === 1
-                      ? 'homeCover'
-                      : tour.media
-                            .filter((m) => !m.section_id)
-                            .findIndex((m) => m.id === media.id) === 5
-                        ? 'mobileDetailCover'
-                        : 'detailGallery',
-                )}
-              </Badge>
+            {media.id === coverId ? (
+              <Alert variant="warning" role="status">
+                <TriangleAlert aria-hidden="true" />
+                <AlertTitle>{t('catalogCover')}</AlertTitle>
+                <AlertDescription>{t('coverNotice')}</AlertDescription>
+              </Alert>
+            ) : (
+              !media.section_id && <Badge variant="outline">{t('detailGallery')}</Badge>
             )}
             <BilingualField
               label={t('alt')}

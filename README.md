@@ -82,13 +82,17 @@ Cerrar la sesión e iniciarla de nuevo después de cambiar el rol. No usar `user
 
 ## Administración y contenido
 
-Entrar a `/admin-tours`. Crear un tour, editar el plan General o agregar opciones, cargar fotografías y organizar las secciones. Las flechas cambian el orden sin depender de arrastrar elementos. En Fotografías, elegir si la imagen pertenece a la galería principal o a una sección de galería; la primera imagen será la portada del catálogo y la segunda se usará en el inicio. Las siguientes formarán la galería del detalle. Su cuarta foto, si existe, será la portada móvil del detalle; de lo contrario se usará la primera. Si faltan imágenes, se reutiliza la portada disponible. Los textos bilingües de las imágenes también aparecen como pies de foto en el detalle.
+Entrar a `/admin-tours`. Crear un tour, editar el plan General o agregar opciones, cargar fotografías y organizar las secciones. Las flechas cambian el orden sin depender de arrastrar elementos. En Fotografías, elegir si la imagen pertenece a la galería principal o a una sección de galería; todas las imágenes de la galería principal aparecen en el detalle, incluida la portada. La primera imagen se usa como portada del catálogo, el inicio y el detalle en escritorio y móvil. Las flechas permiten cambiar el orden y elegir la portada. Los textos bilingües de las imágenes también aparecen como pies de foto en el detalle.
 
 Se pueden guardar borradores incompletos. Para publicar se requieren nombre, resumen y punto de encuentro en ambos idiomas; al menos un plan activo con descripción y servicios traducidos; una portada; textos accesibles de imágenes; y traducciones completas de las secciones visibles. Las comprobaciones se aplican también en PostgreSQL al finalizar la transacción. El guardado detecta ediciones concurrentes mediante `updated_at`.
 
 Configurar el WhatsApp de la coordinadora con código de país y dígitos, sin `+` ni espacios. Publicar privacidad y términos después de incorporar los textos reales en ambos idiomas. No se incluyen certificaciones, opiniones, garantías, disponibilidad ni condiciones legales inventadas.
 
-Las fotografías se optimizan en el navegador hasta 1920 px y se suben a la API, con límite de 5 MB. El backend las almacena en un bucket privado y sirve su contenido en streaming mediante `/api/v1/media/:tourId/:file` y su variante administrativa. RLS comprueba que la imagen sea pública o pertenezca a una sesión propietaria; las URLs firmadas de Storage nunca se entregan al navegador. Las respuestas de imágenes usan `private, no-store`. Las imágenes eliminadas se limpian después de guardar; las subidas que se abandonen sin guardar permanecen privadas y se pueden retirar desde Storage, comprobando que no estén referenciadas en `tour_media`.
+Las fotografías nuevas se optimizan en el navegador hasta 1920 px y generan una miniatura WebP de hasta 640 px de ancho, sin ampliar imágenes pequeñas. Se conserva una imagen principal WebP que ya tenga dimensiones adecuadas; JPEG y PNG se convierten solo cuando el ahorro supera el 10 % y 2 KB, o necesitan reducir dimensiones. La principal admite hasta 5 MB y la miniatura hasta 1 MB. Las tarjetas públicas usan la miniatura y permiten que el navegador elija la principal en pantallas de mayor densidad. La galería utiliza la principal.
+
+Las versiones se almacenan en el bucket privado `tour-media`: el original conserva su ruta, la miniatura usa el sufijo `.card.webp` y una principal convertida desde JPEG/PNG usa `.main.webp`. Las variantes solo se guardan si ahorran al menos el 10 % y 2 KB. Los originales WebP no se vuelven a convertir. En el administrador siguen siendo una sola fotografía. Se sirven por `/api/v1/media/:tourId/:file` (la API prefiere la principal WebP, si existe) y `?variant=card` (miniatura, con respaldo de principal WebP u original), con las mismas rutas administrativas y `private, no-store`. El tipo MIME refleja el archivo servido, aunque la URL de referencia conserve la extensión original. Las migraciones `media_thumbnails` y `media_webp_masters` permiten leer variantes únicamente cuando su original pertenece a un tour publicado y una sección visible. Las URLs firmadas nunca llegan al navegador; no se requieren transformaciones de pago.
+
+Al abrir el catálogo del administrador, se revisan las fotografías guardadas, incluidas las de borradores, y se generan las principales WebP y miniaturas que falten cuando el ahorro es útil. Se procesa una foto a la vez, se muestra el avance y la reducción de descarga de las principales convertidas; si se abandona el catálogo, se continúa al regresar. Los originales existentes quedan como respaldo y siguen ocupando almacenamiento: el ahorro indicado corresponde a los archivos que se descargan, no a espacio total liberado. Sus identificadores, traducciones, orden, portada y referencias no se modifican. Las versiones ya creadas se omiten; las conversiones descartadas por poco ahorro pueden revisarse de nuevo al volver a entrar. No se procesan archivos huérfanos. Al eliminar explícitamente fotografías o tours, la limpieza incluye originales y variantes. Las subidas abandonadas sin guardar permanecen privadas y se pueden retirar desde Storage, comprobando que su principal no esté referenciada en `tour_media`.
 
 ## i18n
 
@@ -114,7 +118,11 @@ Prefijo `/api/v1`:
 | `GET /admin/tours`, `GET /admin/tours/:id` | Gestión privada y vista previa |
 | `PUT /admin/tours/:id` | Guardado completo transaccional |
 | `DELETE /admin/tours/:id` | Eliminación del tour |
-| `POST /admin/uploads` | Imagen multipart: file y tourId |
+| `POST /admin/uploads` | Imagen multipart: file, tourId y thumbnail WebP opcional |
+| `GET /admin/media-thumbnails` | Fotografías guardadas sin miniatura |
+| `GET /admin/media-optimization` | Fotografías que requieren revisión de principal WebP o miniatura |
+| `POST /admin/media-webp` | Principal WebP: multipart path y file; el servidor verifica el ahorro contra el original almacenado |
+| `POST /admin/media-thumbnails` | Crear miniatura existente: multipart path y file; conserva el original |
 | `PUT /admin/settings` | Contacto y datos del sitio |
 | `GET /admin/legal`, `PUT /admin/legal/:slug` | Documentos legales |
 

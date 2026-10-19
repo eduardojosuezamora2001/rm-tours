@@ -8,6 +8,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        'photo-overlay': 'rounded-full bg-card/90 text-primary hover:bg-card',
         media:
           'block overflow-hidden whitespace-normal rounded-none bg-transparent text-foreground',
         chat: 'rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold',

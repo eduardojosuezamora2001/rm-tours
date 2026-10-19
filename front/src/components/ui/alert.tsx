@@ -8,6 +8,8 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: 'bg-card text-card-foreground',
+        warning:
+          'border-warning-border bg-warning-soft text-warning *:data-[slot=alert-description]:text-warning [&_[data-slot=alert-title]]:font-bold',
         destructive:
           'bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 *:[svg]:text-current',
       },

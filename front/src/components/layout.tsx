@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Separator } from '@/components/ui/separator'
 import { SelectField } from '@/components/select-field'
 import { SelectItem } from '@/components/ui/select'
-import { ThemeSelect } from './theme-select'
+import { ThemeToggle } from './theme-toggle'
 import { StitchIcon } from './stitch-icon'
 import { useLang, useSettings } from '@/features/catalog/queries'
 import { cn } from '@/lib/utils'
@@ -165,7 +165,7 @@ export function PublicLayout() {
                 EN
               </SelectItem>
             </SelectField>
-            <ThemeSelect />
+            <ThemeToggle />
             {settings?.whatsapp ? (
               <Button asChild variant="mint" className="stitch-header-whatsapp">
                 <a

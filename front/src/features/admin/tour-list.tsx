@@ -7,6 +7,7 @@ import { parseAsString, useQueryStates } from 'nuqs'
 import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { useAdminTours } from './queries'
+import { MediaOptimization } from './media-optimization'
 import { request } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -88,6 +89,7 @@ export default function AdminTourList() {
           </Link>
         </Button>
       </div>
+      {query.isSuccess && <MediaOptimization />}
       <div className="stitch-admin-metrics">
         {(
           [
@@ -193,10 +195,11 @@ export default function AdminTourList() {
                   </Badge>
                   {tour.media.find((m) => !m.section_id)?.url && (
                     <img
-                      src={tour.media.find((m) => !m.section_id)?.url}
+                      src={tour.media.find((m) => !m.section_id)?.thumbnail_url ?? tour.media.find((m) => !m.section_id)?.url}
                       alt=""
                       width="240"
                       height="160"
+                      loading="lazy"
                     />
                   )}
                 </div>

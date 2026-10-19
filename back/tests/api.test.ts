@@ -15,6 +15,9 @@ describe('API boundaries', () => {
     const response = await app.request('/api/v1/admin/tours', {}, env)
     expect(response.status).toBe(401)
     expect(response.headers.get('cache-control')).toBe('no-store')
+    const thumbnails = await app.request('/api/v1/admin/media-thumbnails', {}, env)
+    expect(thumbnails.status).toBe(401)
+    expect((await app.request('/api/v1/admin/media-optimization', {}, env)).status).toBe(401)
   })
   it('allows CORS only for the configured frontend', async () => {
     const allowed = await app.request(

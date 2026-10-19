@@ -4,6 +4,7 @@ import type { AppEnv } from '../../env'
 import { tourSelect, withMedia } from '../../db'
 import { tourSchema } from '../../schemas'
 import { publicationErrors, type Tour } from '../../../../shared/contracts'
+import { mediaPaths } from '../../media-url'
 
 export const adminTourRoutes = new Hono<AppEnv>()
 adminTourRoutes.get('/tours', async (c) => {
@@ -35,7 +36,7 @@ adminTourRoutes.put('/tours/:id', async (c) => {
     throw error
   }
   const removed = (previous ?? []).map((m) => m.path as string).filter((path) => !result.data.media.some((m) => m.path === path))
-  if (removed.length) c.executionCtx.waitUntil(db.storage.from('tour-media').remove(removed).then(({ error: cleanupError }) => {
+  if (removed.length) c.executionCtx.waitUntil(db.storage.from('tour-media').remove(mediaPaths(removed)).then(({ error: cleanupError }) => {
     if (cleanupError) console.warn(JSON.stringify({ code: 'MEDIA_CLEANUP_FAILED', requestId: c.get('requestId') }))
   }))
   return c.json({ id: result.data.id, updated_at: data })
@@ -47,6 +48,6 @@ adminTourRoutes.delete('/tours/:id', async (c) => {
   const { data: media } = await db.from('tour_media').select('path').eq('tour_id', id)
   const { error } = await db.from('tours').delete().eq('id', id)
   if (error) throw error
-  if (media?.length) c.executionCtx.waitUntil(db.storage.from('tour-media').remove(media.map((m) => m.path)).then(() => undefined))
+  if (media?.length) c.executionCtx.waitUntil(db.storage.from('tour-media').remove(mediaPaths(media.map((m) => m.path))).then(() => undefined))
   return c.body(null, 204)
 })

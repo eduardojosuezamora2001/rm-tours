@@ -1,8 +1,8 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link, useBeforeUnload, useBlocker, useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
-import { Eye, Save, X } from 'lucide-react'
+import { ArrowLeft, Eye, Save } from 'lucide-react'
 import { toast } from 'sonner'
 import {
   categories,
@@ -26,6 +26,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 import { ErrorState, Loading } from '@/components/feedback'
 import { ConfirmationDialog } from '@/components/confirmation-dialog'
+import { ThemeToggle } from '@/components/theme-toggle'
 function Editor({ initial }: { initial: Tour }) {
   const { t } = useTranslation('admin', { lng: 'es' })
   const { t: common } = useTranslation('common', { lng: 'es' })
@@ -99,14 +100,20 @@ function Editor({ initial }: { initial: Tour }) {
         void save()
       }}
     >
-      <div className="admin-heading">
-        <Button asChild variant="soft" size="icon" className="stitch-editor-close">
-          <Link to="/admin-tours" aria-label={common('close')}>
-            <X />
-          </Link>
-        </Button>
-        <h1>{tour.name.es || t('new')}</h1>
-        <div className="flex flex-wrap gap-2">
+      <header className="tour-editor-header">
+        <div className="tour-editor-heading">
+          <div className="tour-editor-heading-tools">
+            <Button asChild variant="ghost">
+              <Link to="/admin-tours">
+                <ArrowLeft data-icon="inline-start" />
+                {t('backToCatalog')}
+              </Link>
+            </Button>
+            <ThemeToggle />
+          </div>
+          <h1>{tour.name.es || t('new')}</h1>
+        </div>
+        <div className="tour-editor-actions">
           <Button asChild variant="outline" disabled={!tour.updated_at || dirty}>
             <Link
               aria-disabled={!tour.updated_at || dirty}
@@ -124,7 +131,7 @@ function Editor({ initial }: { initial: Tour }) {
             {saving ? common('loading') : t('save')}
           </Button>
         </div>
-      </div>
+      </header>
       {error !== null && <ErrorState error={error} />}
       {publication.length > 0 && (
         <Alert variant="destructive">
@@ -284,15 +291,30 @@ function Editor({ initial }: { initial: Tour }) {
 }
 export default function TourEditor() {
   const { id = 'new' } = useParams()
+  const { t, i18n } = useTranslation('admin', { lng: 'es' })
+  useEffect(() => {
+    void i18n.changeLanguage('es')
+    document.documentElement.lang = 'es'
+  }, [i18n])
+  useEffect(() => {
+    document.title = `${id === 'new' ? t('new') : t('edit')} · RM Tours`
+  }, [id, t])
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [id])
   const query = useAdminTour(id)
   const [fresh] = useState(newTour)
-  return id === 'new' ? (
-    <Editor key="new" initial={fresh} />
-  ) : query.isPending ? (
-    <Loading />
-  ) : query.isError ? (
-    <ErrorState error={query.error} retry={() => void query.refetch()} />
-  ) : (
-    <Editor key={id} initial={query.data} />
+  return (
+    <main className="tour-editor-page">
+      {id === 'new' ? (
+        <Editor key="new" initial={fresh} />
+      ) : query.isPending ? (
+        <Loading />
+      ) : query.isError ? (
+        <ErrorState error={query.error} retry={() => void query.refetch()} />
+      ) : (
+        <Editor key={id} initial={query.data} />
+      )}
+    </main>
   )
 }

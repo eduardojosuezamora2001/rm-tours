@@ -12,6 +12,9 @@
   "hour": "por hora",
   "indicative": "Precio orientativo en USD. Sujeto a confirmación.",
   "gallery": "Galería de la experiencia",
+  "choosePhoto": "Seleccionar fotografía de la galería",
+  "selectPhoto": "Mostrar fotografía {{count}}",
+  "galleryEmpty": "Aún no hay fotografías",
   "image": "Ver fotografía {{count}}",
   "preview": "Vista previa privada · Este tour puede no estar publicado"
 }

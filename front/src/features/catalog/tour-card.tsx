@@ -41,7 +41,8 @@ export function TourCard({
       >
         {image?.url ? (
           <img
-            src={image.url}
+            src={image.thumbnail_url ?? image.url}
+            srcSet={image.thumbnail_url ? `${image.thumbnail_url} 1x, ${image.url} 2x` : undefined}
             alt=""
             width="640"
             height="400"

@@ -28,6 +28,7 @@ const SIDEBAR_WIDTH_ICON = '3rem'
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b'
 
 type SidebarContextProps = {
+  triggerRef: React.RefObject<HTMLButtonElement | null>
   state: 'expanded' | 'collapsed'
   open: boolean
   setOpen: (open: boolean) => void
@@ -62,6 +63,7 @@ function SidebarProvider({
   onOpenChange?: (open: boolean) => void
 }) {
   const isMobile = useIsMobile()
+  const triggerRef = React.useRef<HTMLButtonElement>(null)
   const [openMobile, setOpenMobile] = React.useState(false)
 
   // This is the internal state of the sidebar.
@@ -107,6 +109,7 @@ function SidebarProvider({
 
   const contextValue = React.useMemo<SidebarContextProps>(
     () => ({
+      triggerRef,
       state,
       open,
       setOpen,
@@ -154,7 +157,7 @@ function Sidebar({
   variant?: 'sidebar' | 'floating' | 'inset'
   collapsible?: 'offcanvas' | 'icon' | 'none'
 }) {
-  const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+  const { isMobile, state, openMobile, setOpenMobile, triggerRef } = useSidebar()
 
   if (collapsible === 'none') {
     return (
@@ -175,6 +178,12 @@ function Sidebar({
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
         <SheetContent
+          onCloseAutoFocus={(event) => {
+            if (triggerRef.current) {
+              event.preventDefault()
+              triggerRef.current.focus()
+            }
+          }}
           dir={dir}
           data-sidebar="sidebar"
           data-slot="sidebar"
@@ -244,10 +253,11 @@ function Sidebar({
 }
 
 function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<typeof Button>) {
-  const { toggleSidebar } = useSidebar()
+  const { toggleSidebar, triggerRef } = useSidebar()
 
   return (
     <Button
+      ref={triggerRef}
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
@@ -494,7 +504,7 @@ function SidebarMenuButton({
     />
   )
 
-  if (!tooltip) {
+  if (!tooltip || isMobile || state !== 'collapsed') {
     return button
   }
 

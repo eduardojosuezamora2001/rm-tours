@@ -34,38 +34,31 @@ test('shadcn selects filter, sort and restore empty choices without losing quote
   await expect(page).not.toHaveURL(/__rm_tours_empty__/)
 })
 
-test('shadcn theme popup supports keyboard navigation and dark mode accessibility', async ({
+test('shadcn theme button supports keyboard toggling and dark mode accessibility', async ({
   page,
 }, testInfo) => {
   await page.goto('/es')
-  const theme = page.getByRole('combobox', { name: 'Cambiar tema', exact: true })
+  const theme = page.getByRole('button', { name: 'Cambiar tema', exact: true })
+  await expect(theme).toHaveAttribute('aria-pressed', 'false')
+  await expect(theme).toHaveAttribute('title', 'Oscuro')
   await theme.focus()
-  await page.keyboard.press('ArrowDown')
-  await expect(page.getByRole('listbox')).toBeVisible()
-  await expect(page.getByRole('option', { name: 'Claro', exact: true })).toBeFocused()
-  await page.keyboard.press('End')
-  await expect(page.getByRole('option', { name: 'Oscuro', exact: true })).toBeFocused()
   await page.keyboard.press('Enter')
-  await expect(theme).toHaveText('Oscuro')
+  await expect(theme).toHaveAttribute('aria-pressed', 'true')
+  await expect(theme).toHaveAttribute('title', 'Claro')
   await expect(page.locator('html')).toHaveClass(/dark/)
-  await theme.click()
-  await expect(page.getByRole('option', { name: 'Oscuro', exact: true })).toHaveAttribute(
-    'aria-selected',
-    'true',
-  )
-  await expect(page.getByRole('option', { name: 'Oscuro', exact: true })).toBeFocused()
-  await page.keyboard.press('Tab')
-  await expect(page.getByRole('option', { name: 'Oscuro', exact: true })).toBeFocused()
-  // Closed-page audits cover the full document. Radix temporarily hides the background
-  // while its open Select traps focus, so audit the active popup separately here.
+  await expect(page.getByRole('listbox')).toHaveCount(0)
+  await page.keyboard.press('Space')
+  await expect(page.locator('html')).not.toHaveClass(/dark/)
+  await page.keyboard.press('Enter')
+  await expect(theme).toBeFocused()
   const accessibility = await new AxeBuilder({ page })
-    .include('[data-slot="select-content"]')
+    .include('[aria-label="Cambiar tema"]')
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
     .analyze()
   expect(accessibility.violations).toEqual([])
   await page.screenshot({
-    path: `../.impeccable/review/themes/select-dark-${testInfo.project.name}.png`,
+    path: `../.impeccable/review/themes/toggle-dark-${testInfo.project.name}.png`,
   })
-  await page.keyboard.press('Escape')
-  await expect(theme).toBeFocused()
+  await page.keyboard.press('Tab')
+  await expect(theme).not.toBeFocused()
 })

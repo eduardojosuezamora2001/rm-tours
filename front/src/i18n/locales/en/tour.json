@@ -12,6 +12,9 @@
   "hour": "per hour",
   "indicative": "Indicative price in USD. Subject to confirmation.",
   "gallery": "Experience gallery",
+  "choosePhoto": "Choose gallery photo",
+  "selectPhoto": "Show photo {{count}}",
+  "galleryEmpty": "No photos yet",
   "image": "View photo {{count}}",
   "preview": "Private preview · This tour may not be published"
 }

@@ -26,10 +26,23 @@ export function quoteSchema(t: TFunction<'quote'>) {
       .int(t('invalidCount', { min: 0 }))
       .min(0, t('invalidCount', { min: 0 }))
       .max(99, t('invalidCount', { min: 0 })),
-    nationality: required,
+    participants: z
+      .array(z.object({
+        name: required,
+        age: z
+          .string()
+          .trim()
+          .regex(/^\d+$/, t('invalidAge'))
+          .refine((value) => Number(value) <= 120, t('invalidAge')),
+      }))
+      .min(1, t('participantsRequired'))
+      .max(198),
     schedule: z.string().max(100),
     notes: z.string().trim().max(1500),
     consent: z.boolean().refine(Boolean, t('consentRequired')),
+  }).refine((values) => values.participants.length === values.adults + values.children, {
+    message: t('participantsRequired'),
+    path: ['participants'],
   })
 }
 export type QuoteValues = z.infer<ReturnType<typeof quoteSchema>>
@@ -50,7 +63,6 @@ export function buildMessage(
     ['date', calendarDate(values.date, lang)],
     ['adults', values.adults],
     ['children', values.children],
-    ['nationality', values.nationality],
   ]
   if (values.schedule) fields.push(['schedule', values.schedule])
   if (values.notes) fields.push(['notes', values.notes])
@@ -58,6 +70,11 @@ export function buildMessage(
     t('messageIntro'),
     '',
     ...fields.map(([key, value]) => `${t(key as 'name')}: ${value}`),
+    '',
+    `${t('participants')}:`,
+    ...values.participants.map((participant, index) =>
+      `${t('participant', { number: index + 1 })}: ${participant.name} — ${t('age')}: ${participant.age}`,
+    ),
     '',
     `${t('link')}: ${origin}/${lang}/tours/${tour.slug}`,
     '',

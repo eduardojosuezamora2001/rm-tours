@@ -10,10 +10,12 @@ const toggleVariants = cva(
   {
     variants: {
       variant: {
+        media: 'overflow-hidden border-[3px] border-transparent bg-transparent hover:bg-transparent data-[state=on]:border-primary data-[state=on]:bg-transparent aria-pressed:bg-transparent',
         default: 'bg-transparent',
         outline: 'border border-input bg-transparent hover:bg-muted',
       },
       size: {
+        media: 'h-auto min-w-0 p-0 rounded-xl',
         default:
           'h-8 min-w-8 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2',
         sm: "h-7 min-w-7 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",

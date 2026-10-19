@@ -63,6 +63,8 @@ beforeEach(() => {
     if (url.pathname === '/auth/v1/recover') return Response.json({})
     if (url.pathname === '/auth/v1/logout') return new Response(null, { status: 204 })
     if (url.pathname.includes('/storage/v1/object/sign/')) {
+      if (!url.searchParams.has('token') && url.pathname.endsWith('.main.webp'))
+        return Response.json({ message: 'Object not found' }, { status: 400 })
       if (url.searchParams.has('token'))
         return new Response(new Uint8Array([137, 80, 78, 71]), {
           headers: { 'Content-Type': 'image/png' },

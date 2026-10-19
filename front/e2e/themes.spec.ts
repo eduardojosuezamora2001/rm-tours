@@ -10,14 +10,14 @@ test('theme selection persists and keeps tour surfaces accessible in both langua
   const review = '../.impeccable/review/themes'
   await mkdir(review, { recursive: true })
   await page.goto('/es')
-  const theme = page.getByRole('combobox', { name: 'Cambiar tema', exact: true })
-  await expect(theme).toHaveText('Claro')
+  const theme = page.getByRole('button', { name: 'Cambiar tema', exact: true })
+  await expect(theme).toHaveAttribute('aria-pressed', 'false')
   await expect(page.getByRole('combobox', { name: 'Cambiar idioma', exact: true })).toBeVisible()
   await page.screenshot({ path: `${review}/home-light-${testInfo.project.name}.png` })
-  await chooseSelect(theme, 'Oscuro')
+  await theme.click()
   await expect(page.locator('html')).toHaveClass(/dark/)
   await page.reload()
-  await expect(theme).toHaveText('Oscuro')
+  await expect(theme).toHaveAttribute('aria-pressed', 'true')
   await expect(page.locator('html')).toHaveClass(/dark/)
 
   for (const [surface, url] of [
@@ -28,7 +28,7 @@ test('theme selection persists and keeps tour surfaces accessible in both langua
   ]) {
     await page.goto(url)
     await expect(page.locator('h1')).toBeVisible()
-    await expect(theme).toHaveText('Oscuro')
+    await expect(theme).toHaveAttribute('aria-pressed', 'true')
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     const accessibility = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
@@ -43,12 +43,16 @@ test('theme selection persists and keeps tour surfaces accessible in both langua
   await page.goto('/es/tours?destination=paquera#main')
   await chooseSelect(page.getByRole('combobox', { name: 'Cambiar idioma', exact: true }), 'EN')
   await expect(page).toHaveURL('/en/tours?destination=paquera#main')
-  await expect(page.getByRole('combobox', { name: 'Change theme', exact: true })).toHaveText('Dark')
-  await chooseSelect(page.getByRole('combobox', { name: 'Change theme', exact: true }), 'Light')
+  await expect(page.getByRole('button', { name: 'Change theme', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await page.getByRole('button', { name: 'Change theme', exact: true }).click()
   await expect(page.locator('html')).not.toHaveClass(/dark/)
   await page.reload()
-  await expect(page.getByRole('combobox', { name: 'Change theme', exact: true })).toHaveText(
-    'Light',
+  await expect(page.getByRole('button', { name: 'Change theme', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'false',
   )
 
   if (testInfo.project.name === 'mobile') {

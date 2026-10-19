@@ -86,6 +86,8 @@ beforeAll(async () => {
       'utf8',
     ),
   )
+  await db.exec(await readFile(new URL('../supabase/migrations/20261019014321_media_thumbnails.sql', import.meta.url), 'utf8'))
+  await db.exec(await readFile(new URL('../supabase/migrations/20261019020958_media_webp_masters.sql', import.meta.url), 'utf8'))
 }, 30000)
 beforeEach(async () => {
   await db.exec('reset role; truncate public.tours cascade; truncate storage.objects;')
@@ -177,5 +179,28 @@ describe('migration, transaction and RLS on PostgreSQL', () => {
     await expect(
       db.query("insert into storage.objects(bucket_id,name) values('tour-media','bad.webp')"),
     ).rejects.toThrow()
+  })
+  it('gives thumbnails and WebP masters the same publication and section visibility as their originals', async () => {
+    const tour = document()
+    tour.sections[0].type = 'gallery'
+    const original = tour.media[0].path
+    const hidden = `${tour.id}/55555555-5555-4555-8555-555555555555.jpg`
+    tour.media.push({ ...tour.media[0], id: '55555555-5555-4555-8555-555555555555', path: hidden, section_id: tour.sections[0].id, position: 1 })
+    await save(tour)
+    for (const name of [original, `${original}.card.webp`, `${original}.main.webp`, hidden, `${hidden}.card.webp`, `${hidden}.main.webp`, `${original}.fake.card.webp`, `${original}.fake.main.webp`, 'unattached.webp.card.webp', 'unattached.jpg.main.webp']) {
+      await db.query("insert into storage.objects(bucket_id,name) values('tour-media',$1)", [name])
+    }
+    for (const claims of [{}, visitor]) {
+      await as('authenticated', claims)
+      expect((await db.query<{ name: string }>('select name from storage.objects order by name')).rows.map((r) => r.name)).toEqual([original, `${original}.card.webp`, `${original}.main.webp`])
+    }
+    await as('anon')
+    expect((await db.query('select * from storage.objects')).rows).toHaveLength(3)
+    await as('authenticated', owner)
+    await db.query("update public.tours set status='draft' where id=$1", [tour.id])
+    await as('anon')
+    expect((await db.query('select * from storage.objects')).rows).toHaveLength(0)
+    await as('authenticated', visitor)
+    expect((await db.query('select * from storage.objects')).rows).toHaveLength(0)
   })
 })

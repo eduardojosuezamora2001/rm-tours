@@ -33,6 +33,7 @@ export interface TourMedia {
   section_id: string | null
   position: number
   url?: string
+  thumbnail_url?: string
 }
 export interface Tour {
   id: string

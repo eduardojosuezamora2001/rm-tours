@@ -7,7 +7,7 @@ test.use({
   },
 })
 
-test('opening header selects preserves header, content and scroll position', async ({
+test('header language select and theme toggle preserve layout and scroll position', async ({
   page,
 }, testInfo) => {
   await page.goto('/es')
@@ -33,8 +33,9 @@ test('opening header selects preserves header, content and scroll position', asy
     for (const label of ['Cambiar idioma', 'Cambiar tema']) {
       const before = await measure()
       if (testInfo.project.name === 'desktop') expect(before.gutter).toBeGreaterThan(0)
-      await page.getByRole('combobox', { name: label, exact: true }).click()
-      await expect(page.getByRole('listbox')).toBeVisible()
+      const isTheme = label === 'Cambiar tema'
+      await page.getByRole(isTheme ? 'button' : 'combobox', { name: label, exact: true }).click()
+      if (!isTheme) await expect(page.getByRole('listbox')).toBeVisible()
       const during = await measure()
       await testInfo.attach(`${label}-${top}`, {
         body: JSON.stringify({ before, during }),
@@ -46,8 +47,10 @@ test('opening header selects preserves header, content and scroll position', asy
         expect(Math.abs(during.boxes[i].y - before.boxes[i].y)).toBeLessThan(1)
         expect(Math.abs(during.boxes[i].width - before.boxes[i].width)).toBeLessThan(1)
       }
-      await page.keyboard.press('Escape')
-      await expect(page.getByRole('listbox')).toBeHidden()
+      if (!isTheme) {
+        await page.keyboard.press('Escape')
+        await expect(page.getByRole('listbox')).toBeHidden()
+      }
       const after = await measure()
       expect(after.boxes).toEqual(before.boxes)
       expect(after.scroll).toBe(before.scroll)

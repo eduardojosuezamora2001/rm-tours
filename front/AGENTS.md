@@ -5,7 +5,7 @@
 
 - Use the `shadcn` skill for frontend work. Use the official `@shadcn` registry and the project's Radix base.
 - Prefer installed shadcn components for interface controls, fields, cards, badges, feedback, overlays and navigation widgets. Compose these primitives instead of building custom equivalents.
-- Use shadcn `Select` for dropdowns throughout the public site and administration, including language and theme. Use `SelectField` for the shared trigger/content/group composition. Do not use `NativeSelect` or hand-written `<select>` controls in application code.
+- Use shadcn `Select` for dropdowns throughout the public site and administration, including language. Use `SelectField` for the shared trigger/content/group composition. Theme uses the shared sun/moon `ThemeToggle` button, which alternates light and dark on click. Do not use `NativeSelect` or hand-written `<select>` controls in application code.
 - Keep `SelectItem` inside `SelectGroup`. Represent empty domain choices with `EMPTY_SELECT_VALUE`, decoded by `SelectField`; never pass an empty string to `SelectItem`.
 - Use React Hook Form `Controller` for controlled shadcn fields. Preserve labels, refs, validation, URL filters and in-memory quotation data.
 - Use `AlertDialog` for in-app destructive confirmations and unsaved-change prompts. Retain `beforeunload` only for leaving the browser document.

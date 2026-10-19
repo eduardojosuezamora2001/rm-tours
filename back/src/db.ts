@@ -63,6 +63,7 @@ export async function withMedia(
         section_id: m.section_id,
         position: m.position,
         url: mediaUrl(m.path, admin),
+        thumbnail_url: mediaUrl(m.path, admin, true),
       })),
   }))
 }

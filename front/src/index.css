@@ -27,6 +27,9 @@
   --accent: #e2f1eb;
   --accent-foreground: #003756;
   --destructive: #a91d26;
+  --warning: #775900;
+  --warning-border: #ba9100;
+  --warning-soft: #fff8d6;
   --border: #dce4e9;
   --input: #c7d3dc;
   --ring: #147b77;
@@ -57,6 +60,9 @@
   --accent: #1c3e3a;
   --accent-foreground: #b0edd6;
   --destructive: #ffb4b7;
+  --warning: #fde047;
+  --warning-border: #facc15;
+  --warning-soft: #302d18;
   --border: #304958;
   --input: #526e7e;
   --ring: #8de0cd;
@@ -119,6 +125,9 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-warning: var(--warning);
+  --color-warning-border: var(--warning-border);
+  --color-warning-soft: var(--warning-soft);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -1333,6 +1342,9 @@
 .stitch-gallery-photo:only-child {
   grid-column: span 2;
 }
+.stitch-gallery-photo:nth-child(2):last-child {
+  grid-row: span 2;
+}
 .stitch-gallery-photo img {
   width: 100%;
   height: 100%;
@@ -1990,42 +2002,59 @@
   width: 32px;
   padding: 0;
 }
-.stitch-editor-drawer {
-  width: 100% !important;
-  max-width: 576px !important;
-  overflow-y: auto;
-  display: block;
-  padding: 0;
-  background: var(--card);
-  gap: 0;
-}
 .stitch-tour-editor {
   min-width: 0;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 32px 48px;
 }
-.stitch-tour-editor > .admin-heading {
+.tour-editor-page {
+  min-height: 100svh;
+  background: var(--background);
+}
+.tour-editor-header {
   position: sticky;
   top: 0;
   z-index: 2;
-  background: var(--card);
-  box-shadow: 0 1px 8px rgb(0 0 0 / 0.04);
-  padding: 24px 56px 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding-block: 20px;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+.tour-editor-heading {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 8px;
+}
+.tour-editor-heading h1 {
+  font: 700 24px/1.35 var(--font-heading);
+  overflow-wrap: anywhere;
+}
+.tour-editor-heading-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 16px;
-  margin-bottom: 16px;
+  width: 100%;
 }
-.stitch-tour-editor > .admin-heading h1 {
-  font: 700 20px/28px var(--font-heading);
-}
-.stitch-tour-editor > .admin-heading [data-slot='button'] {
-  font-size: 12px;
-  height: 40px;
+.tour-editor-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
 }
 .stitch-tour-editor > [data-slot='tabs'] {
-  padding: 0 24px 24px;
+  padding: 0;
 }
 .stitch-tour-editor .editor-tabs {
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   display: flex;
   overflow: auto;
   background: var(--color-surface-container-low);
@@ -2033,16 +2062,19 @@
   border-radius: 8px;
 }
 .stitch-tour-editor .editor-tabs [data-slot='tabs-trigger'] {
-  font-size: 11px;
+  font-size: 13px;
   white-space: nowrap;
   min-height: 36px;
 }
 .stitch-tour-editor .editor-panel {
   background: var(--card);
   border: 0;
-  padding: 16px 0;
+  padding: 24px;
   box-shadow: none;
   margin-top: 0;
+}
+.stitch-tour-editor .media-editor-cover {
+  border: 2px solid var(--warning-border);
 }
 .stitch-tour-editor [data-slot='field-label'] {
   font-size: 12px;
@@ -2461,18 +2493,29 @@
   .stitch-admin-tour-grid .admin-tour-actions {
     flex-basis: auto;
   }
-  .stitch-tour-editor > .admin-heading {
-    padding: 20px 52px 16px 20px;
+  .stitch-tour-editor {
+    padding: 0 16px 32px;
   }
-  .stitch-tour-editor > .admin-heading h1 {
-    font-size: 18px;
-    line-height: 26px;
+  .tour-editor-header {
+    position: static;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
   }
-  .stitch-tour-editor > [data-slot='tabs'] {
-    padding: 0 20px 20px;
+  .tour-editor-heading h1 {
+    font-size: 22px;
+  }
+  .tour-editor-actions [data-slot='button'] {
+    flex: 1;
+    min-width: 0;
+  }
+  .stitch-tour-editor .editor-tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .stitch-tour-editor .editor-tabs [data-slot='tabs-trigger'] {
-    font-size: 10px;
+    font-size: 12px;
     padding: 8px;
   }
   .stitch-tour-editor .bilingual-grid {
@@ -2597,9 +2640,6 @@
 }
 .stitch-language-select {
   width: 64px;
-}
-.stitch-theme-select {
-  width: 94px;
 }
 .stitch-header-whatsapp {
   font-size: 11px;
@@ -4289,11 +4329,6 @@
 }
 
 /* Calibrated against full resolution Stitch captures at 1323px and 390px. */
-.stitch-editor-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-}
 .stitch-hero-stats {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -4885,11 +4920,7 @@
 .stitch-detail-enquiry .stitch-embedded-quote .form-grid > [data-slot='field'][data-field] {
   grid-column: span 1;
 }
-.stitch-detail-enquiry .stitch-embedded-quote .form-grid > [data-slot='field'][data-field='name'],
-.stitch-detail-enquiry
-  .stitch-embedded-quote
-  .form-grid
-  > [data-slot='field'][data-field='nationality'] {
+.stitch-detail-enquiry .stitch-embedded-quote .form-grid > [data-slot='field'][data-field='name'] {
   grid-column: span 2;
 }
 .stitch-participant-control {
@@ -5443,7 +5474,7 @@
   }
 }
 
-/* Keep both preference selects within the compact mobile tour header. */
+/* Keep the language selector and theme button within the compact mobile tour header. */
 @media (max-width: 767px) {
   .stitch-header-brand {
     flex: 1;
@@ -5461,9 +5492,6 @@
   .stitch-header-whatsapp,
   .stitch-header .stitch-account {
     display: none;
-  }
-  .stitch-theme-select {
-    width: 90px;
   }
   .stitch-header-detail .stitch-header-brand {
     flex: 0 1 90px;
@@ -5534,35 +5562,83 @@
   opacity: 0.5;
   cursor: default;
 }
-.admin-sidebar[data-slot='sidebar'] {
-  width: 100%;
+.admin-workspace {
+  background: var(--background);
 }
-.admin-sidebar [data-slot='sidebar-header'],
-.admin-sidebar [data-slot='sidebar-group'],
-.admin-sidebar [data-slot='sidebar-footer'] {
+.admin-workspace .admin-main {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
   padding: 0;
 }
-.admin-sidebar [data-slot='sidebar-header'] {
-  gap: 20px;
+.admin-workspace-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
 }
-.admin-sidebar [data-slot='sidebar-header'] > a {
-  padding-inline: 8px;
+.admin-workspace-preferences {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
 }
-.admin-sidebar [data-slot='sidebar-menu'] {
-  gap: 6px;
+.admin-workspace-content {
+  width: 100%;
+  padding: 32px;
+  max-width: 1500px;
+  margin-inline: auto;
 }
-.admin-sidebar [data-slot='sidebar-menu-button'] {
-  height: auto;
+.admin-workspace:has([data-collapsible='icon']) .admin-workspace-header {
+  min-height: 48px;
 }
-.admin-sidebar [data-slot='sidebar-footer'] {
-  margin-top: auto;
-  gap: 12px;
+.admin-workspace [data-slot='sidebar-footer'] {
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
+.admin-workspace-content > .admin-heading {
+  align-items: center;
+  margin-bottom: 28px;
+  gap: 24px;
+}
+.admin-workspace-content > .admin-heading h1 {
+  font: 700 24px/1.35 var(--font-heading);
+  text-wrap: balance;
+}
+.admin-workspace-content > .admin-heading h1 .material-symbols-outlined {
+  display: none;
+}
+.admin-workspace-content > .admin-heading p {
+  margin-top: 8px;
+  max-width: 65ch;
+}
+.admin-workspace-content > .admin-heading > [data-slot='button'] {
+  flex-shrink: 0;
 }
 @media (max-width: 767px) {
-  .admin-sidebar [data-slot='sidebar-menu'] {
-    flex-direction: row;
+  .admin-workspace-header {
+    min-height: 68px;
+    padding: 12px 16px;
+    gap: 12px;
   }
-  .admin-sidebar [data-slot='sidebar-menu-item'] {
-    flex-shrink: 0;
+  .admin-workspace-header [data-slot='sidebar-trigger'] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .admin-workspace-preferences {
+    gap: 0;
+  }
+  .admin-workspace-content {
+    padding: 24px 16px 32px;
+  }
+  .admin-workspace-content > .admin-heading {
+    align-items: stretch;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .admin-workspace-content > .admin-heading h1 {
+    font-size: 22px;
   }
 }

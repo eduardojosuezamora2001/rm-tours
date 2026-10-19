@@ -8,6 +8,8 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
+        'photo-counter': 'h-9 gap-2 bg-[var(--ocean-backdrop)] text-inverse-on-surface px-3 text-sm font-bold tabular-nums [&>svg]:size-4!',
+        'photo-label': 'h-9 gap-2 bg-card text-primary px-4 text-sm font-bold [&>svg]:size-4!',
         service:
           'h-auto rounded-sm bg-surface-container text-muted-foreground whitespace-normal text-left',
         default: 'bg-primary text-primary-foreground [a]:hover:bg-primary/80',
