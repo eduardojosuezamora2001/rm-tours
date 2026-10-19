@@ -174,14 +174,7 @@ test('detail, gallery, direct English access and private administration entry', 
   })
   await page.screenshot({ path: `${review}/detail-${testInfo.project.name}.png`, fullPage: true })
   await page.goto('/en/tours/bioluminiscencia-paquera')
-  await expect
-    .poll(() =>
-      page
-        .locator('.tour-gallery-main img')
-        .first()
-        .evaluate((image) => (image as HTMLImageElement).currentSrc),
-    )
-    .toContain(testTours[0].media[0].url!)
+  await expect(page.locator('.tour-gallery-main img')).toHaveAttribute('alt', testTours[0].media[0].alt.en)
   await page.getByRole('button', { name: 'View photo 1' }).click()
   await expect(page.getByRole('dialog').getByText('1 / 6')).toBeVisible()
   await page.getByRole('button', { name: 'Next', exact: true }).click()
@@ -204,8 +197,8 @@ test('both photos remain available when a tour has only two images', async ({ pa
   await expect(page.locator('.tour-gallery-main')).toHaveCount(1)
   await expect(page.locator('.tour-gallery-thumbnail')).toHaveCount(2)
   await expect(page.locator('.tour-gallery-main img')).toHaveAttribute(
-    'src',
-    tour.media[0].url!,
+    'alt',
+    tour.media[0].alt.en,
   )
   await expect(page.locator('.tour-gallery-count')).toHaveText('1 / 2')
   expect(await page.locator('.tour-gallery').evaluate((gallery) =>
@@ -216,12 +209,12 @@ test('both photos remain available when a tour has only two images', async ({ pa
   await expect(page.getByRole('dialog').getByText('1 / 2')).toBeVisible()
   await page.getByRole('button', { name: 'Next', exact: true }).click()
   await expect(page.getByRole('dialog').getByText('2 / 2')).toBeVisible()
-  await expect(page.getByRole('dialog').getByRole('img')).toHaveAttribute('src', tour.media[1].url!)
+  await expect(page.getByRole('dialog').getByRole('img')).toHaveAttribute('alt', tour.media[1].alt.en)
   await page.keyboard.press('ArrowRight')
   await expect(page.getByRole('dialog').getByText('1 / 2')).toBeVisible()
   await page.keyboard.press('Escape')
   await page.getByRole('radio', { name: 'Show photo 2', exact: true }).click()
-  await expect(page.locator('.tour-gallery-main img')).toHaveAttribute('src', tour.media[1].url!)
+  await expect(page.locator('.tour-gallery-main img')).toHaveAttribute('alt', tour.media[1].alt.en)
   await expect(page.locator('.tour-gallery-count')).toHaveText('2 / 2')
   await expect(page.getByRole('radio', { name: 'Show photo 2', exact: true })).toHaveAttribute('aria-checked', 'true')
   await page.getByRole('button', { name: 'View photo 2', exact: true }).click()

@@ -15,6 +15,7 @@
   "choosePhoto": "Choose gallery photo",
   "selectPhoto": "Show photo {{count}}",
   "galleryEmpty": "No photos yet",
+  "imageFailed": "This photo could not be loaded.",
   "image": "View photo {{count}}",
   "preview": "Private preview · This tour may not be published"
 }

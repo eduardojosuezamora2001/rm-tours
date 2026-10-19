@@ -15,6 +15,7 @@
   "choosePhoto": "Seleccionar fotografía de la galería",
   "selectPhoto": "Mostrar fotografía {{count}}",
   "galleryEmpty": "Aún no hay fotografías",
+  "imageFailed": "No se pudo cargar esta fotografía.",
   "image": "Ver fotografía {{count}}",
   "preview": "Vista previa privada · Este tour puede no estar publicado"
 }

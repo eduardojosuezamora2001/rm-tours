@@ -2,7 +2,6 @@ import { lazy, Suspense, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { parseAsString, useQueryState } from 'nuqs'
 import { useLang, useTour } from './queries'
 import { tourMedia } from './media'
@@ -13,9 +12,11 @@ import { ErrorState, Loading } from '@/components/feedback'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Alert, AlertTitle } from '@/components/ui/alert'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Dialog } from '@/components/ui/dialog'
 import { StitchIcon } from '@/components/stitch-icon'
 import { TourGallery } from './tour-gallery'
+import { PhotoViewer } from './photo-viewer'
+import { GalleryImageProvider } from './gallery-image-provider'
 import {
   Card,
   CardHeader,
@@ -33,7 +34,11 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 const QuoteForm = lazy(() => import('../quote/quote-page'))
-export function TourContent({ tour, preview = false }: { tour: Tour; preview?: boolean }) {
+export function TourContent(props: { tour: Tour; preview?: boolean }) {
+  return <GalleryImageProvider key={props.tour.id}><TourContentBody {...props} /></GalleryImageProvider>
+}
+
+function TourContentBody({ tour, preview = false }: { tour: Tour; preview?: boolean }) {
   const { t } = useTranslation('tour')
   const { t: design } = useTranslation('catalog')
   const { t: common } = useTranslation()
@@ -48,15 +53,6 @@ export function TourContent({ tour, preview = false }: { tour: Tour; preview?: b
       (media) => media.section_id && sections.some((section) => section.id === media.section_id),
     ),
   ]
-  const photoIndex = viewerImages.findIndex((media) => media.id === photo)
-  const movePhoto = (direction: number) => {
-    if (viewerImages.length)
-      setPhoto(
-        viewerImages[
-          (Math.max(0, photoIndex) + direction + viewerImages.length) % viewerImages.length
-        ].id,
-      )
-  }
   const destination = common(`destinations.${tour.destination}`)
   const suffix = `${lang === 'es' ? ' en ' : ' in '}${destination}`
   const mobileTitle = tour.name[lang].endsWith(suffix)
@@ -317,50 +313,7 @@ export function TourContent({ tour, preview = false }: { tour: Tour; preview?: b
           if (!open) setPhoto(null)
         }}
       >
-        <DialogContent
-          className="photo-dialog"
-          onKeyDown={(event) => {
-            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-              event.preventDefault()
-              movePhoto(event.key === 'ArrowLeft' ? -1 : 1)
-            }
-          }}
-          closeLabel={common('close')}
-          aria-describedby={undefined}
-        >
-          <DialogHeader>
-            <DialogTitle>{t('gallery')}</DialogTitle>
-          </DialogHeader>
-          {photo && (
-            <img
-              src={tour.media.find((m) => m.id === photo)?.url}
-              alt={tour.media.find((m) => m.id === photo)?.alt[lang] ?? ''}
-            />
-          )}
-          {viewerImages.length > 1 && (
-            <div className="stitch-photo-navigation">
-              <Button
-                variant="soft"
-                size="icon"
-                aria-label={design('previous')}
-                onClick={() => movePhoto(-1)}
-              >
-                <ChevronLeft />
-              </Button>
-              <span aria-live="polite">
-                {photoIndex + 1} / {viewerImages.length}
-              </span>
-              <Button
-                variant="soft"
-                size="icon"
-                aria-label={design('next')}
-                onClick={() => movePhoto(1)}
-              >
-                <ChevronRight />
-              </Button>
-            </div>
-          )}
-        </DialogContent>
+        {photo && <PhotoViewer key={photo} images={viewerImages} initialPhoto={photo} lang={lang} />}
       </Dialog>
     </div>
   )
